@@ -7,11 +7,24 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
+.DS_Store
+
+# Ignore the Postgres settings
+/config/database.yml
+
+# Ignore the ENV storage
+.env
 
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
 /tmp
+
+
+.idea
+
+app/policies/sample_policy.rb
+coverage
+.byebug_history
+
+public/uploads
