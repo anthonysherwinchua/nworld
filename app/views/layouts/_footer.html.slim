@@ -1,0 +1,29 @@
+.container-fluid.light-grey-background.footer-wrapper.no-flash
+  .container
+    .social-nav
+      a href="https://twitter.com/#{ENV['TWITTER_HANDLE']}" target="_blank"
+        i.fa.fa-twitter
+
+      a href="https://www.linkedin.com/company/#{ENV['LINKEDIN_HANDLE']}" target="_blank"
+        i.fa.fa-linkedin
+
+      a href="https://www.facebook.com/#{ENV['FB_HANDLE']}" target="_blank"
+        i.fa.fa-facebook
+
+    .footer-nav
+      hr
+      .footer-nav-pills
+        = link_to "About", "#"
+        span.bullet &bull;
+        = link_to "FAQ", "#"
+        span.bullet &bull;
+        = link_to "Terms & Conditions", "#"
+        span.bullet &bull;
+        = link_to "Privacy Policy", "#"
+        span.bullet &bull;
+        = link_to "Contact", "#"
+      hr
+
+    .footer-copyright
+
+

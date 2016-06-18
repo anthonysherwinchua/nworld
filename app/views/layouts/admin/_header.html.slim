@@ -1,0 +1,23 @@
+.nav-container
+  nav.navbar.navbar-default.navbar-fixed-top
+    .container
+      .navbar-header
+        button.navbar-toggle.collapsed aria-expanded="false" data-target="#main-menu" data-toggle="collapse" type="button"
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        = link_to admin_dashboard_path, class: 'navbar-brand' do
+          = image_tag('logo.jpg')
+          p Admin Dashboard
+
+      #main-menu.collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-left
+          li class=active_link?('base')
+            = link_to 'Dashboard', admin_dashboard_path
+          li class=active_link?('users')
+            = link_to 'Admins', admin_users_path
+
+        ul.nav.navbar-nav.navbar-right
+          li
+            = link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }

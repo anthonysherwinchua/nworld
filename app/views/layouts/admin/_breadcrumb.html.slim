@@ -1,0 +1,34 @@
+- name ||= nil
+- show_page = current_page?(action: 'show', id: params[:id] || '1') rescue false
+- parent_class_name = @current_item_parent.class.name
+
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          - if @current_item_parent
+            li = link_to parent_class_name.pluralize.titleize, [:admin, parent_class_name.underscore.pluralize.to_sym]
+            li = link_to current_item_parent_name, [:admin, @current_item_parent]
+
+          li = link_to breadcrumb_name(name), [:admin, @current_item_parent, controller_name.to_sym]
+
+          - unless current_page?(action: 'index') || current_page?(admin_root_path)
+            li = action_name.humanize
+
+          - if defined?(current_item_name)
+            li = current_item_name
+
+        .breadcrumb-right
+
+          = yield :other_buttons
+          /- other_btns.each do |other_btn|
+          /  = link_to other_btn[:label], other_btn[:link], class: 'btn btn-warning' rescue nil
+
+          - if show_page
+            = link_to 'Edit', [:edit, :admin, @current_item], class: 'btn btn-default' rescue nil
+
+          - if current_page?(action: 'index')
+            = link_to 'New', [:new, :admin, @current_item_parent, controller_name.singularize.to_sym], class: 'btn btn-default'
+          - else
+            = link_to 'Back', [:admin, @current_item_parent, controller_name.to_sym], class: 'btn btn-default' rescue nil
