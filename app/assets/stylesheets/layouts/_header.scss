@@ -26,9 +26,9 @@
 
     .navbar-default {
       border: none;
-      background-color: white;
+      background-color: $company-primary;
       height: 110px;
-      border-bottom: 2px solid $gray-lighter;
+      border-bottom: none;
     }
 
     .navbar-brand p {

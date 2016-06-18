@@ -1,11 +1,26 @@
 class Admin::BaseController < ApplicationController
 
-  before_action :authenticate_user!
-  before_action :authorize_admin!
+  include Pundit
+
+  layout 'admin'
+
+  before_action :authenticate_user!, :authorize_admin_access?
+
+  def dashboard
+  end
+
+  rescue_from Pundit::NotAuthorizedError, with: :permission_denied
 
   private
 
-  def authorize_admin!
-    current_user.has_role?(:admin)
+  def permission_denied
+    flash[:error] = 'You don\'t have the proper permissions to view this page.'
+    self.response_body = nil
+    redirect_to(request.referrer || root_path)
   end
+
+  def authorize_admin_access?
+    authorize :admin, :access?
+  end
+
 end
