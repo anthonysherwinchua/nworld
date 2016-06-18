@@ -9,6 +9,7 @@ FactoryGirl.define do
 
     trait :other_role do
       after :create do |user|
+        user.remove_role :admin
         user.add_role :other
       end
     end
