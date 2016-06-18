@@ -10,11 +10,11 @@ RSpec.describe Admin::UsersController, type: :controller do
   describe 'GET #index' do
     let(:count) { 3 }
     let!(:users) { create_list(:user, count) }
-
+    let(:all_users) { [[user] + users].flatten.map(&:id).sort }
     before { get :index }
 
     it { is_expected.to render_template(:index) }
-    it { expect(assigns(:current_items)).to eq([user] + users) }
+    it { expect(assigns(:current_items).ids.sort).to eq(all_users) }
 
   end
 
