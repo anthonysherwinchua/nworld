@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605070811) do
+ActiveRecord::Schema.define(version: 20160618054005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20160605070811) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "shippable_countries", force: :cascade do |t|
+    t.integer  "zone_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "shippable_countries", ["zone_id"], name: "index_shippable_countries_on_zone_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -52,4 +61,22 @@ ActiveRecord::Schema.define(version: 20160605070811) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  create_table "zone_pricings", force: :cascade do |t|
+    t.integer  "zone_id"
+    t.integer  "weight"
+    t.decimal  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "zone_pricings", ["zone_id"], name: "index_zone_pricings_on_zone_id", using: :btree
+
+  create_table "zones", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "shippable_countries", "zones"
+  add_foreign_key "zone_pricings", "zones"
 end
