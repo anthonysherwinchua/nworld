@@ -15,6 +15,8 @@
         ul.nav.navbar-nav.navbar-left
           li class=active_link?('base')
             = link_to 'Dashboard', admin_dashboard_path
+          li class=active_link?('shippable_countries')
+            = link_to 'Shippable Countries', admin_shippable_countries_path
           li class=active_link?('users')
             = link_to 'Admins', admin_users_path
 
