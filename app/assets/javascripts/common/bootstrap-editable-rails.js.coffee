@@ -3,7 +3,7 @@
 
 $(document).ready ->
 
-  $.fn.editable.defaults.mode = 'inline';
+#  $.fn.editable.defaults.mode = 'inline';
   $("[data-xeditable='true']").editable();
 
   return

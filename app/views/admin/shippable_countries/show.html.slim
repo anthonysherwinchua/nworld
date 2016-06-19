@@ -1,4 +1,4 @@
-= render 'layouts/admin/breadcrumb', current_item_name: @current_item.email
+= render 'layouts/admin/breadcrumb', current_item_name: @current_item.name
 
 .container
   .row
@@ -6,7 +6,7 @@
       .panel.panel-default
 
         .panel-heading
-          h4.panel-title User
+          h4.panel-title Shippable Country
 
         .panel-body
           = render 'show'

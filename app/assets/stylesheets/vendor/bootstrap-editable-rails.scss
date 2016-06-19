@@ -4,8 +4,9 @@
 
   &:before {
     font-family: FontAwesome;
-    content: '\f044';
     font-weight: bold;
+    font-size: 10px;
+    content: '\f044';
     color: $brand-primary;
   }
 }
