@@ -4,7 +4,7 @@ class Admin::ShippableCountriesController < Admin::BaseController
   before_action :prepare_country, only: [:show, :edit, :update, :destroy]
 
   def index
-    @current_items = ShippableCountry.order('name asc')
+    @current_items = ShippableCountry.includes(:zone).order('name asc')
   end
 
   def show
