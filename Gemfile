@@ -34,6 +34,7 @@ gem 'jquery-ui-rails'
 gem 'select2-rails'
 gem 'font-awesome-rails'
 gem 'cocoon'
+gem 'bootstrap-editable-rails'
 
 # Image processing
 gem 'carrierwave'

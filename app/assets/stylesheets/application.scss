@@ -6,8 +6,10 @@
 @import "select2";
 @import "devise_bootstrap_views";
 @import "font-awesome";
+@import "bootstrap-editable";
 
 // COMMON COMPONENTS
+@import "vendor/**/*";
 @import "components/typography";
 @import "layouts/messages";
 @import "layouts/**/*";

@@ -28,11 +28,17 @@ class Admin::ShippableCountriesController < Admin::BaseController
   end
 
   def update
-    if @current_item.update_attributes(shipping_country_params)
-      redirect_to admin_shippable_countries_path, notice: 'Successfully updated country'
-    else
-      flash.now[:error] = @current_item.errors.full_messages.to_sentence
-      render :edit
+    respond_to do |format|
+      if @current_item.update_attributes(shipping_country_params)
+        format.html { redirect_to admin_shippable_countries_path, notice: 'Successfully updated country' }
+        format.json { head :no_content } # 204 No Content
+      else
+        format.html do
+          flash.now[:error] = @current_item.errors.full_messages.to_sentence
+          render action: "edit"
+        end
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
