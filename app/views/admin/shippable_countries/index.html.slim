@@ -14,8 +14,9 @@
           tbody
             - grouped_item.each do |current_item|
               tr
-                td = current_item.name
+                td
+                  = link_to '#', data: { xeditable: 'true', type: 'text', url: admin_shippable_country_path(current_item), name: "name", resource: 'shippable_country' }
+                    = current_item.name
                 td = current_item.zone.name
                 td
                   = render 'admin/base/buttons', current_item: current_item
-
