@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'base#dashboard'
 
     resources :shippable_countries
+    resources :zone_pricings
     resources :users
 
     root to: 'base#dashboard'

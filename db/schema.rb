@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20160618054005) do
 
   create_table "zone_pricings", force: :cascade do |t|
     t.integer  "zone_id"
-    t.integer  "weight"
+    t.decimal  "weight"
     t.decimal  "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
