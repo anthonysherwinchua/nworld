@@ -2,9 +2,10 @@ class Admin::ZonePricingsController < Admin::BaseController
 
   before_action :authorize_admin_access?
   before_action :prepare_country, only: [:show, :edit, :update, :destroy]
+  before_action :prepare_zone, only: [:index]
 
   def index
-    @current_items = ZonePricing.includes(:zone).order('id asc')
+    @current_items = @zone.zone_pricings.order('weight asc')
   end
 
   def show
@@ -55,6 +56,10 @@ class Admin::ZonePricingsController < Admin::BaseController
 
   def shipping_country_params
     params.require(:zone_pricing).permit(:weight, :price, :zone_id)
+  end
+
+  def prepare_zone
+    @zone =  Zone.find_by(id: params[:zone_id]) || Zone.first
   end
 
 end
