@@ -35,7 +35,7 @@ class Admin::ZonePricingsController < Admin::BaseController
       else
         format.html do
           flash.now[:error] = @current_item.errors.full_messages.to_sentence
-          render action: "edit"
+          render action: 'edit'
         end
         format.json { render json: @current_item.errors, status: :unprocessable_entity }
       end
