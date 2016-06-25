@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :shippable_countries
     resources :zone_pricings
     resources :users
+    resources :zones
 
     root to: 'base#dashboard'
   end
