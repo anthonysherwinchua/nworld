@@ -9,7 +9,8 @@ RSpec.describe Admin::ZonePricingsController, type: :controller do
 
   describe 'GET #index' do
     let(:count) { 3 }
-    let!(:zone_pricings) { create_list(:zone_pricing, count) }
+    let(:zone) { build(:zone) }
+    let!(:zone_pricings) { create_list(:zone_pricing, count, zone: zone) }
     before { get :index }
 
     it { is_expected.to render_template(:index) }
