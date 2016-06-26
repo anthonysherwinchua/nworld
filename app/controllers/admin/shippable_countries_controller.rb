@@ -18,7 +18,7 @@ class Admin::ShippableCountriesController < Admin::BaseController
   end
 
   def create
-    @current_item = ShippableCountry.new(shipping_country_params)
+    @current_item = ShippableCountry.new(shippable_country_params)
     if @current_item.save
       redirect_to admin_shippable_countries_path, notice: 'Successfully created country'
     else
@@ -29,7 +29,7 @@ class Admin::ShippableCountriesController < Admin::BaseController
 
   def update
     respond_to do |format|
-      if @current_item.update_attributes(shipping_country_params)
+      if @current_item.update_attributes(shippable_country_params)
         format.html { redirect_to admin_shippable_countries_path, notice: 'Successfully updated country' }
         format.json { head :no_content }
       else
@@ -53,7 +53,7 @@ class Admin::ShippableCountriesController < Admin::BaseController
     @current_item = ShippableCountry.find(params[:id])
   end
 
-  def shipping_country_params
+  def shippable_country_params
     params.require(:shippable_country).permit(:name, :zone_id)
   end
 

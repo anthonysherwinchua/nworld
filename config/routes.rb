@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     resources :couriers
     resources :shippable_countries
+    resources :zone_range_pricings
     resources :zone_pricings
     resources :users
     resources :zones
