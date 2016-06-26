@@ -9,11 +9,14 @@ RSpec.describe Admin::ZonePricingsController, type: :controller do
 
   describe 'GET #index' do
     let(:count) { 3 }
-    let(:zone) { build(:zone) }
+    let(:zones) { create_list(:zone, count) }
+    let(:zone) { zones.first }
     let!(:zone_pricings) { create_list(:zone_pricing, count, zone: zone) }
-    before { get :index }
+    before { get :index, zone_id: zones.first }
 
     it { is_expected.to render_template(:index) }
+    it { expect(assigns(:zones).map(&:id).sort).to eq(zones.map(&:id)) }
+    it { expect(assigns(:zone).id).to eq(zone.id) }
     it { expect(assigns(:current_items).map(&:id).sort).to eq(zone_pricings.map(&:id)) }
 
   end

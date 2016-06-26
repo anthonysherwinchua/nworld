@@ -2,6 +2,7 @@ class Admin::ZonePricingsController < Admin::BaseController
 
   before_action :authorize_admin_access?
   before_action :prepare_country, only: [:show, :edit, :update, :destroy]
+  before_action :prepare_zones, only: [:index]
   before_action :prepare_zone, only: [:index]
 
   def index
@@ -58,8 +59,12 @@ class Admin::ZonePricingsController < Admin::BaseController
     params.require(:zone_pricing).permit(:weight, :price, :zone_id)
   end
 
+  def prepare_zones
+    @zones =  Zone.all
+  end
+
   def prepare_zone
-    @zone =  Zone.find_by(id: params[:zone_id]) || Zone.first
+    @zone =  @zones.detect{ |zone| zone.id == params[:zone_id].to_i } || @zones.first
   end
 
 end
