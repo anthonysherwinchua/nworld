@@ -15,15 +15,6 @@
         ul.nav.navbar-nav.navbar-left
           li class=active_link?('base')
             = link_to 'Dashboard', admin_dashboard_path
-          li class=active_link?(['shippable_countries', 'zone_pricing'])
-            a.dropdown-toggle data-toggle='dropdown' href='#'
-              | Shipping
-              span.caret
-            ul.dropdown-menu
-              li = link_to 'Shippable Countries', admin_shippable_countries_path
-              li = link_to 'Zone Pricing', admin_zone_pricings_path
-              li = link_to 'Couriers', admin_couriers_path
-              li = link_to 'Zones', admin_zones_path
           li class=active_link?('users')
             = link_to 'Admins', admin_users_path
 
