@@ -1,0 +1,12 @@
+= render 'layouts/admin/breadcrumb', current_item_name: "Pricing of #{@current_item.weight}kg for #{@current_item.zone.name}"
+
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-default
+
+        .panel-heading
+          h4.panel-title Zone Pricing
+
+        .panel-body
+          = render 'show'
