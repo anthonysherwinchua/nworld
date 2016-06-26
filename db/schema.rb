@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625133019) do
+ActiveRecord::Schema.define(version: 20160626021257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 20160625133019) do
 
   add_index "zone_pricings", ["zone_id"], name: "index_zone_pricings_on_zone_id", using: :btree
 
+  create_table "zone_range_pricings", force: :cascade do |t|
+    t.integer  "zone_id"
+    t.text     "weight_range"
+    t.decimal  "price"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "zone_range_pricings", ["zone_id"], name: "index_zone_range_pricings_on_zone_id", using: :btree
+
   create_table "zones", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -88,5 +98,6 @@ ActiveRecord::Schema.define(version: 20160625133019) do
 
   add_foreign_key "shippable_countries", "zones"
   add_foreign_key "zone_pricings", "zones"
+  add_foreign_key "zone_range_pricings", "zones"
   add_foreign_key "zones", "couriers"
 end

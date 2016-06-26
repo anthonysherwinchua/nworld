@@ -8,6 +8,7 @@ RSpec.describe Zone, type: :model do
 
   it { is_expected.to have_many(:shippable_countries).inverse_of(:zone) }
   it { is_expected.to have_many(:zone_pricings).inverse_of(:zone) }
+  it { is_expected.to have_many(:zone_range_pricings).inverse_of(:zone) }
   it { is_expected.to belong_to(:courier).inverse_of(:zones) }
 
 end
