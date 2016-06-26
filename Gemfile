@@ -34,7 +34,6 @@ gem 'jquery-ui-rails'
 gem 'select2-rails'
 gem 'font-awesome-rails'
 gem 'cocoon'
-gem 'bootstrap-editable-rails'
 
 # Image processing
 gem 'carrierwave'
@@ -44,7 +43,7 @@ gem 'sidekiq'
 
 # 3rd party services
 gem 'aws-sdk', '~> 2'
-gem 'fog-aws'
+gem "fog-aws"
 
 group :development, :test do
   gem 'byebug'
