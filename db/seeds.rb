@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+files = ['users', 'couriers', 'zones', 'shippable_countries', 'zone_pricings']
+
+files.each do |file|
+  if file.singularize.camelize.constantize.count < 1
+    puts "File: #{file}"
+    require Rails.root + "db/seeds/#{file}.rb"
+  else
+    puts "Skipping File: #{file}"
+  end
+end

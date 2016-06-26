@@ -1,0 +1,12 @@
+.editable-click, a.editable-click, a.editable-click:hover {
+  border-bottom: none;
+  color: black;
+
+  &:before {
+    font-family: FontAwesome;
+    font-weight: bold;
+    font-size: 10px;
+    content: '\f044';
+    color: $brand-primary;
+  }
+}
