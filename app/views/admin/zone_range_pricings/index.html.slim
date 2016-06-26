@@ -17,7 +17,7 @@
       .col-xs-12
         p No Available Zone Pricing for #{@zone.name}
     - else
-      - @current_items.each_slice(@current_items.count/2) do |grouped_item|
+      - @current_items.each_slice(@current_items.count/2+1) do |grouped_item|
         .col-xs-12.col-md-6
           table.table.table-hover.table-striped.table-condensed
             thead
@@ -31,7 +31,7 @@
                 tr
                   td
                     = link_to '#', data: { xeditable: 'true', type: 'text', url: admin_zone_range_pricing_path(current_item), name: "weight", resource: 'zone_range_pricing' }
-                      = current_item.weight
+                      = current_item.weight_range
                   td
                     = link_to '#', data: { xeditable: 'true', type: 'text', url: admin_zone_range_pricing_path(current_item), name: "price", resource: 'zone_range_pricing' }
                       = current_item.price

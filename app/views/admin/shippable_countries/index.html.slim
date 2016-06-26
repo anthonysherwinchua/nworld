@@ -2,7 +2,7 @@
 
 .container
   .row
-    - @current_items.each_slice(@current_items.count/2) do |grouped_item|
+    - @current_items.each_slice(@current_items.count/2+1) do |grouped_item|
       .col-xs-12.col-md-6
         table.table.table-hover.table-striped.table-condensed
           thead
