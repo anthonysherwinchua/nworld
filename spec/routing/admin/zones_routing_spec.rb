@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::CouriersController, type: :routing do
+RSpec.describe Admin::ZonesController, type: :routing do
 
   it { expect(get: '/admin/zones').to route_to(controller: 'admin/zones', action: 'index') }
   it { expect(get: '/admin/zones/new').to route_to(controller: 'admin/zones', action: 'new') }
