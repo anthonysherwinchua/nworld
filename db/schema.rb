@@ -11,16 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626021257) do
+ActiveRecord::Schema.define(version: 20160702150227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "couriers", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.decimal  "price"
+    t.integer  "status",      default: 0
+    t.decimal  "weight"
+    t.integer  "category_id"
+    t.string   "unit"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -96,6 +116,7 @@ ActiveRecord::Schema.define(version: 20160626021257) do
 
   add_index "zones", ["courier_id"], name: "index_zones_on_courier_id", using: :btree
 
+  add_foreign_key "products", "categories"
   add_foreign_key "shippable_countries", "zones"
   add_foreign_key "zone_pricings", "zones"
   add_foreign_key "zone_range_pricings", "zones"

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::ZonesController, type: :controller do
+RSpec.describe Admin::ProductsController, type: :controller do
 
   include_examples 'admin-only controller'
 
@@ -9,12 +9,11 @@ RSpec.describe Admin::ZonesController, type: :controller do
 
   describe 'GET #index' do
     let(:count) { 3 }
-    let!(:zones) { create_list(:zone, count) }
-    let(:all_zones) { zones.map(&:id).sort }
+    let!(:products) { create_list(:product, count) }
     before { get :index }
 
     it { is_expected.to render_template(:index) }
-    it { expect(assigns(:current_items).ids.sort).to eq(all_zones) }
+    it { expect(assigns(:current_items).map(&:id).sort).to eq(products.map(&:id)) }
 
   end
 
@@ -24,29 +23,27 @@ RSpec.describe Admin::ZonesController, type: :controller do
 
     it { is_expected.to render_template(:new) }
     it { expect(assigns(:current_item)).to be_new_record }
-    it { expect(assigns(:current_item)).to be_a_new(Zone) }
+    it { expect(assigns(:current_item)).to be_a_new(Product) }
 
   end
 
   describe 'POST #create' do
 
     context 'with valid attributes' do
+      let(:category) { create(:category) }
+      let(:product_attrs) { attributes_for(:product).merge(category_id: category.id) }
 
-      let(:courier) { create(:courier) }
-      let(:zone_attrs) { attributes_for(:zone, courier_id: courier.id) }
+      before { post :create, product: product_attrs }
 
-      before { post :create, zone: zone_attrs }
-
-      it { is_expected.to redirect_to(admin_zones_path) }
+      it { is_expected.to redirect_to(admin_products_path) }
       it { expect(assigns(:current_item)).to be_persisted }
 
     end
 
     context 'with invalid attributes' do
+      let(:product_attrs) { attributes_for(:product, :invalid) }
 
-      let(:zone_attrs) { attributes_for(:zone, :invalid) }
-
-      before { post :create, zone: zone_attrs }
+      before { post :create, product: product_attrs }
 
       it { is_expected.to render_template(:new) }
       it { expect(assigns(:current_item)).not_to be_persisted }
@@ -57,9 +54,9 @@ RSpec.describe Admin::ZonesController, type: :controller do
 
   describe 'GET #edit' do
 
-    let(:zone) { create(:zone) }
+    let(:product) { create(:product) }
 
-    before { get :edit, id: zone }
+    before { get :edit, id: product }
 
     it { is_expected.to render_template(:edit) }
     it { expect(assigns(:current_item)).to be }
@@ -70,22 +67,22 @@ RSpec.describe Admin::ZonesController, type: :controller do
 
     context 'with valid attributes' do
 
-      let(:zone) { create(:zone) }
-      let(:zone_attrs) { attributes_for(:zone) }
+      let(:product) { create(:product) }
+      let(:product_attrs) { attributes_for(:product) }
 
-      before { put :update, id: zone, zone: zone_attrs }
+      before { put :update, id: product, product: product_attrs }
 
-      it { is_expected.to redirect_to(admin_zones_path) }
+      it { is_expected.to redirect_to(admin_products_path) }
       it { expect(assigns(:current_item).errors).to be_empty }
 
     end
 
     context 'with invalid attributes' do
 
-      let(:zone) { create(:zone) }
-      let(:zone_attrs) { attributes_for(:zone, :invalid) }
+      let(:product) { create(:product) }
+      let(:product_attrs) { attributes_for(:product, :invalid) }
 
-      before { put :update, id: zone, zone: zone_attrs }
+      before { put :update, id: product, product: product_attrs }
 
       it { is_expected.to render_template(:edit) }
       it { expect(assigns(:current_item).errors).to be }
@@ -96,11 +93,11 @@ RSpec.describe Admin::ZonesController, type: :controller do
 
   describe 'DELETE #destroy' do
 
-    let(:zone) { create(:zone) }
+    let(:product) { create(:product) }
 
-    before { delete :destroy, id: zone }
+    before { delete :destroy, id: product }
 
-    it { is_expected.to redirect_to(admin_zones_path) }
+    it { is_expected.to redirect_to(admin_products_path) }
     it { expect(assigns(:current_item)).not_to be_persisted }
 
   end

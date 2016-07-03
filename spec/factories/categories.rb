@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :courier do
-    sequence(:name) { |i| "name #{i}" }
+  factory :category do
+    sequence(:name) { |i| "Category #{i}" }
 
     trait :invalid do
       name nil

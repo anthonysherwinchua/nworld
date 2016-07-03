@@ -1,0 +1,23 @@
+table.table.table-hover
+  tbody
+    tr
+      td category
+      td = @current_item.category.name
+    tr
+      td title
+      td = @current_item.title
+    tr
+      td price
+      td = @current_item.price
+    tr
+      td status
+      td = @current_item.status
+    tr
+      td weight
+      td = @current_item.weight
+    tr
+      td unit
+      td = @current_item.unit
+    tr
+      td description
+      td = @current_item.description.html_safe

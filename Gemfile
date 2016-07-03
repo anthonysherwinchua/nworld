@@ -35,6 +35,7 @@ gem 'select2-rails'
 gem 'font-awesome-rails'
 gem 'cocoon'
 gem 'bootstrap-editable-rails'
+gem 'ckeditor'
 
 # Image processing
 gem 'carrierwave'
