@@ -1,7 +1,17 @@
-= f.association :category
-= f.input :title
-= f.input :price
-= f.input :status
-= f.input :weight
-= f.input :unit
-= f.input :description, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} }
+.row
+  .col-xs-12.col-md-6
+    = f.association :category
+  .col-xs-12.col-md-6
+    = f.input :title
+.row
+  .col-xs-12.col-md-3
+    = f.input :price
+  .col-xs-12.col-md-3
+    = f.input :status, collection: Product.statuses.map{|k, v| [k.titleize, v] }
+  .col-xs-12.col-md-3
+    = f.input :weight
+  .col-xs-12.col-md-3
+    = f.input :unit
+.row
+  .col-xs-12
+    = f.input :description, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} }

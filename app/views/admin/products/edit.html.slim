@@ -1,3 +1,20 @@
 = render 'layouts/admin/breadcrumb', current_item_name: @current_item.title_was
 
-= render 'admin/base/edit', current_item: @current_item
+.container
+  .row
+    .col-md-12
+
+      .panel.panel-default
+
+        .panel-heading
+          h4.panel-title Edit Product
+
+        = simple_form_for([:admin, @current_item]) do |f|
+          .panel-body
+            = render 'form', f: f
+
+          .panel-footer
+
+            .btn-toolbar
+              = link_to 'Back', [:admin, :product], class: 'btn btn-default'
+              = f.submit 'Save', class: 'btn btn-success pull-right'
