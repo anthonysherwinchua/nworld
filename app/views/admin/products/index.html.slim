@@ -8,6 +8,7 @@
           tr
             th Category
             th Title
+            th Price
             th width="20%"
 
         tbody
@@ -15,6 +16,7 @@
             tr
               td = current_item.category&.name
               td = current_item.title
+              td = current_item.price
               td
                 = render 'admin/base/buttons', current_item: current_item
 

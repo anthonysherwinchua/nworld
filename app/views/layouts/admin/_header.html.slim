@@ -25,7 +25,7 @@
               li = link_to 'Shippable Countries', admin_shippable_countries_path
               li = link_to 'Zone Range Pricing', admin_zone_range_pricings_path
               li = link_to 'Zone Pricing', admin_zone_pricings_path
-          li class=active_link?('products')
+          li class=active_link?(['products', 'packages'])
             a.dropdown-toggle data-toggle='dropdown' href='#'
               | Products
               span.caret
