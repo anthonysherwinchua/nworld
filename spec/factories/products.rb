@@ -9,6 +9,10 @@ FactoryGirl.define do
     weight '9.99'
     unit 'Pack'
 
+    trait :published do
+      status :regular
+    end
+
     trait :invalid do
       title nil
     end

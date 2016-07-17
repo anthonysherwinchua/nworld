@@ -3,7 +3,6 @@
 #= require jquery-ui
 #= require jquery_ujs
 #= require bootstrap-sprockets
-#= require ckeditor/init
 #= require_tree ./common
 
 window.Nworld ||= {}

@@ -12,7 +12,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe 'GET #show' do
 
-    let(:product) { create(:product) }
+    let(:product) { create(:product, :published) }
 
     before { get :show, id: product.id }
 
