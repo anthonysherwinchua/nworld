@@ -1,19 +1,5 @@
 // LIBRARIES
-@import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "jquery-ui";
-@import "select2";
-@import "devise_bootstrap_views";
 @import "font-awesome";
-@import "bootstrap-editable";
-
-// COMMON COMPONENTS
-@import "vendor/**/*";
-@import "components/typography";
-@import "layouts/messages";
-@import "layouts/**/*";
-
-// PAGE-SPECIFIC
-@import "devise/sessions/new";
-@import "pages/index";
+@import "themes/vixor/**/*";

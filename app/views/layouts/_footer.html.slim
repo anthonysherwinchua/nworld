@@ -1,29 +1,39 @@
-.container-fluid.light-grey-background.footer-wrapper.no-flash
+footer#footer-2
   .container
-    .social-nav
-      a href="https://twitter.com/#{ENV['TWITTER_HANDLE']}" target="_blank"
-        i.fa.fa-twitter
-
-      a href="https://www.linkedin.com/company/#{ENV['LINKEDIN_HANDLE']}" target="_blank"
-        i.fa.fa-linkedin
-
-      a href="https://www.facebook.com/#{ENV['FB_HANDLE']}" target="_blank"
-        i.fa.fa-facebook
-
-    .footer-nav
-      hr
-      .footer-nav-pills
-        = link_to "About", "#"
-        span.bullet &bull;
-        = link_to "FAQ", "#"
-        span.bullet &bull;
-        = link_to "Terms & Conditions", "#"
-        span.bullet &bull;
-        = link_to "Privacy Policy", "#"
-        span.bullet &bull;
-        = link_to "Contact", "#"
-      hr
-
-    .footer-copyright
-
-
+    .row.clearfix.footer-2-content
+      .col-xs-12
+        h3.footer-2-logo.text-center
+          = link_to root_path do
+            = image_tag 'logo.jpg'
+        .social-icons-2.div-center
+          a.icon-facebook data-original-title="Facebook" data-placement="top" data-toggle="tooltip" href="https://www.facebook.com/#{ENV['FB_HANDLE']}" title=""
+            i.fa.fa-facebook
+          a.icon-twitter data-original-title="Twitter" data-placement="top" data-toggle="tooltip" href="https://twitter.com/#{ENV['TWITTER_HANDLE']}" title=""
+            i.fa.fa-twitter
+          a.icon-linkedin data-original-title="LinkedIn" data-placement="top" data-toggle="tooltip" href="https://www.linkedin.com/company/#{ENV['LINKEDIN_HANDLE']}" title=""
+            i.fa.fa-linkedin
+      .col-xs-12
+        ul.list-unstyled.list-inline.text-center
+          li
+            h4
+              i.fa.fa-angle-double-right
+              a href="#"  About Us
+          li
+            h4
+              i.fa.fa-angle-double-right
+              a href="#"  Contact Us
+          li
+            h4
+              i.fa.fa-angle-double-right
+              a href="#"  Terms &amp; Conditions
+          li
+            h4
+              i.fa.fa-angle-double-right
+              a href="#"  Privacy Policy
+  .footer-2-copyright
+    .container
+      .row
+        .col-xs-12
+          p.text-center
+            | © 2016 NWorld Products Online; Site by
+            = link_to ' Sherwin Chua', "https://github.com/anthonysherwinchua"

@@ -1,20 +1,20 @@
-.nav-container
-  nav.navbar.navbar-default
+#navbar-4
+  nav#navbar.navbar.navbar-default.navbar-static role="navigation"
     .container
-      .navbar-header
-        button.navbar-toggle.collapsed aria-expanded="false" data-target="#main-menu" data-toggle="collapse" type="button"
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        = link_to root_path, class: 'navbar-brand' do
-          = image_tag('logo.jpg')
+      .row
+        .col-xs-12
+          .navbar-header
+            button.navbar-toggle.collapsed aria-expanded="false" data-target="#main-menu" data-toggle="collapse" type="button"
+              span.sr-only Toggle navigation
+              span.icon-bar.top-bar
+              span.icon-bar.middle-bar
+              span.icon-bar.bottom-bar
+            = link_to root_path, class: 'navbar-brand' do
+              = image_tag('logo.jpg')
+          #main-menu.collapse.navbar-collapse.js-navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+              li class=active_link?('page')
+                = link_to 'Home', root_path
+              li
+                = link_to 'Products', products_path
 
-      #main-menu.collapse.navbar-collapse
-        ul.nav.navbar-nav
-          li.active
-            a href="#"
-              | Home
-              span.sr-only (current)
-          li
-            a href="#" About Us

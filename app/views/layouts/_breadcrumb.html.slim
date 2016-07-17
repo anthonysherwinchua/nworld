@@ -1,0 +1,11 @@
+- unless current_page?(root_url)
+  .breadcrumb-box
+    .breadcrumb-container
+      .container
+        .row
+          .col-xs-12.col-sm-6
+            h3
+              = yield :breadcrumb_title
+          .col-xs-12.col-sm-6
+            ul.breadcrumb
+              = yield :breadcrumb_links

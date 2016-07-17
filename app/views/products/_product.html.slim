@@ -1,0 +1,13 @@
+- decorate(product) do |decorated_product|
+  .col-xs-12.col-sm-4.box-img-portfolio.animated-2.fadeIn-animation.in-view
+    .effect-container
+      figure.effect-2
+        = image_tag 'http://damterthemes.com/theme/vixor/1.0.5/assets/images/portfolio/4.jpg', class: 'img-responsive'
+        figcaption
+          h2
+            = decorated_product.selling_price
+          p.icon-links
+            = link_to product, target: '_blank' do
+              = fa_icon 'external-link'
+          p.description
+            = decorated_product.title

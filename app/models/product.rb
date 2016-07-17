@@ -8,4 +8,6 @@ class Product < ActiveRecord::Base
   validates :category, presence: true
   validates :title, uniqueness: { scope: :category_id, case_sensitive: false, message: 'Duplicate record' }
   validates :weight, numericality: { greater_than: 0 }
+
+  scope :published, -> { where(['status <> ?', Product.statuses[:draft]]) }
 end

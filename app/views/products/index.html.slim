@@ -1,0 +1,12 @@
+- content_for :breadcrumb_title do
+  | Products
+
+- content_for :breadcrumb_links do
+  li
+    = link_to 'Home', root_path
+  li
+    span.active Products
+
+section.portfolio-3-column
+  .container.text-center
+    = render @products

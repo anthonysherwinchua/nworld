@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     root to: 'base#dashboard'
   end
 
+  resources :products, only: [:index, :show]
+
   root to: 'pages#index'
 
 end
