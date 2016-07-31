@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
 
+  mount_uploaders :images, ImageUploader
+
   enum status: [:draft, :brand_new, :featured, :regular]
 
   belongs_to :category, inverse_of: :products

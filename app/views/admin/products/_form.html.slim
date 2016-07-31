@@ -7,7 +7,7 @@
   .col-xs-12.col-md-3
     = f.input :price
   .col-xs-12.col-md-3
-    = f.input :status, collection: Product.statuses.map{|k, v| [k.titleize, v] }
+    = f.input :status, collection: Product.statuses.map{|k, v| [k.titleize, k] }
   .col-xs-12.col-md-3
     = f.input :weight
   .col-xs-12.col-md-3
@@ -15,3 +15,6 @@
 .row
   .col-xs-12
     = f.input :description, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} }
+.row
+  .col-xs-12
+    = f.file_field :images, multiple: true

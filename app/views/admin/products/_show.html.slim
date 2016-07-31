@@ -19,5 +19,10 @@ table.table.table-hover
       td unit
       td = @current_item.unit
     tr
+      td Images
+      td
+        - @current_item.images.each do |image|
+          = image_tag image.gallery
+    tr
       td description
       td = @current_item.description.html_safe

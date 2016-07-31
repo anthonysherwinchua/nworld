@@ -38,13 +38,13 @@ gem 'bootstrap-editable-rails'
 gem 'ckeditor'
 
 # Image processing
-gem 'carrierwave'
+gem 'mini_magick'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 # Background worker
 gem 'sidekiq'
 
 # 3rd party services
-gem 'aws-sdk', '~> 2'
 gem 'fog-aws'
 
 group :development, :test do
