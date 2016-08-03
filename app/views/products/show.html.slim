@@ -17,15 +17,14 @@
         .animated-2.fadeIn-animation.col-xs-12.col-sm-6.col-md-7.in-view
           #bs-carousel-slide.carousel.slide data-ride="carousel"
             ol.carousel-indicators
-              li data-slide-to="0" data-target="#bs-carousel-slide"
-              li data-slide-to="1" data-target="#bs-carousel-slide"
-              li.active data-slide-to="2" data-target="#bs-carousel-slide"
+              - @product.images.each_with_index do |image, i|
+                li data-slide-to="#{i}" data-target="#bs-carousel-slide" class='#{'active' if i == 0}'
             .carousel-inner
-              - @product.images.each do |image|
-                .item
-                  = image_tag image.gallery, class: 'img-responsive'
+              - @product.images.each_with_index do |image, i|
+                div class="item #{"active" if i == 0}"
+                  = image_tag image.url(:gallery), class: 'img-responsive'
             .slider-shadow.div-center
-              img.img-responsive alt="" src="http://damterthemes.com/theme/vixor/1.0.6/assets/images/slider-shadow.png" /
+              = image_tag 'products/slider-shadow.png', class: 'img-responsive'
             a.left.carousel-control data-slide="prev" href="#bs-carousel-slide"
               span.fa.fa-angle-left
             a.right.carousel-control data-slide="next" href="#bs-carousel-slide"

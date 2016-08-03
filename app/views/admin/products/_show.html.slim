@@ -22,7 +22,7 @@ table.table.table-hover
       td Images
       td
         - @current_item.images.each do |image|
-          = image_tag image.gallery
+          = image_tag image.url(:thumb)
     tr
       td description
       td = @current_item.description.html_safe
