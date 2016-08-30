@@ -5,7 +5,7 @@
   li
     = link_to 'Home', root_path
   li
-    | Shop
+    | Shoping Cart
 
 section.my-cart-table
   .container
@@ -64,7 +64,7 @@ section.cart-totals
                   span Order Total:
                   p = decorated_cart.total_price
             .panel-footer
-              button.btn.btn-custom.btn-lg type="button"
+              = link_to new_checkout_path, class: 'btn btn-custom btn-lg' do
                 i.fa.fa-angle-right
                 | &nbsp;
                 | Proceed To Checkout

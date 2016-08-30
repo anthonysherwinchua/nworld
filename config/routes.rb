@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :shipping, only: [:update]
 
   get 'shopping_cart', to: 'shopping_carts#index'
+  resources :checkouts,  only: [:new, :create, :show]
 
   root to: 'pages#index'
 

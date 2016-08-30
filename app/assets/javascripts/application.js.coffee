@@ -4,10 +4,12 @@
 #= require jquery_ujs
 #= require ckeditor/init
 #= require bootstrap-sprockets
+#= require_tree ./controllers
 #= require_tree ./common
 
 window.Nworld ||= {}
 Nworld.Views ||= {}
+Nworld.Views.Checkouts ||= {}
 
 Nworld.init = ->
   appData = $('body').data()

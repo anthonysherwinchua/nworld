@@ -1,0 +1,26 @@
+- content_for :breadcrumb_title do
+  | My Cart
+
+- content_for :breadcrumb_links do
+  li
+    = link_to 'Home', root_path
+  li
+    = link_to 'Shopping Cart', shopping_cart_path
+  li
+    | Checkout
+
+- content_for :additional_js do
+  = javascript_include_tag 'https://js.braintreegateway.com/v2/braintree.js'
+
+section.actions-cart.background-color-light-gray
+  = simple_form_for :checkout, url: checkouts_path do |f|
+    .container
+      .row
+        .col-sm-6.col-sm-offset-3
+
+          #token data-token="#{@client_token}"
+
+          #bt-dropin
+
+        .col-sm-6.col-sm-offset-3.text-center
+            = submit_tag 'Pay', class: 'btn btn-primary btn-lg'
