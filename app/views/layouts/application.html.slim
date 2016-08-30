@@ -13,6 +13,9 @@ html
     /= favicon_link_tag "icon.png"
 
   body*app_data class="#{css_class_name}"
+    #messages
+      = render 'layouts/messages'
+
     #page-wrap
       section#top-bar
         = render 'layouts/topbar'
@@ -28,10 +31,6 @@ html
 
       #footer
         = render 'layouts/footer'
-
-    /#messages
-    /  = render 'layouts/messages'
-
 
     /= render 'layouts/modal'
 

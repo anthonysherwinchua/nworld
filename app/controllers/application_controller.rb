@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
     admin_root_path
   end
 
+  def cart
+    @cart ||= Cart.find_by(id: session[:cart_id]) || Cart.create(user_id: current_user&.id)
+    session[:cart_id] ||= @cart.id
+    @cart
+  end
+  helper_method :cart
+
 end

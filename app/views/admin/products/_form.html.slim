@@ -17,4 +17,13 @@
     = f.input :description, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} }
 .row
   .col-xs-12
+    = f.input :directory_image, as: :file, hint: 'Upload images that has a size of 350px height and 260px width'
+    = image_tag f.object.directory_image.thumb
+  .col-xs-12
     = f.file_field :images, multiple: true
+    p.help-block Upload images that has a size of 615px height and 460px width
+    ul.list-inline
+      - f.object.images_cache do |img|
+        li = image_tag img.thumb, class: 'img-responsive'
+      - f.object.images.each do |img|
+        li = image_tag img.thumb, class: 'img-responsive'

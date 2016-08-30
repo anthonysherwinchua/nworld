@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731060105) do
+ActiveRecord::Schema.define(version: 20160821063801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "user_id"
+    t.integer  "shippable_country_id"
+  end
+
+  add_index "carts", ["shippable_country_id"], name: "index_carts_on_shippable_country_id", using: :btree
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +38,29 @@ ActiveRecord::Schema.define(version: 20160731060105) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "cart_id",                     null: false
+    t.integer  "line_package_id"
+    t.integer  "product_id",                  null: false
+    t.integer  "quantity",        default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
+  add_index "line_items", ["line_package_id"], name: "index_line_items_on_line_package_id", using: :btree
+  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
+
+  create_table "line_packages", force: :cascade do |t|
+    t.integer  "cart_id",    null: false
+    t.integer  "package_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "line_packages", ["cart_id"], name: "index_line_packages_on_cart_id", using: :btree
+  add_index "line_packages", ["package_id"], name: "index_line_packages_on_package_id", using: :btree
+
   create_table "packages", force: :cascade do |t|
     t.decimal  "price"
     t.decimal  "worth"
@@ -39,13 +72,14 @@ ActiveRecord::Schema.define(version: 20160731060105) do
     t.string   "title"
     t.text     "description"
     t.decimal  "price"
-    t.integer  "status",      default: 0
+    t.integer  "status",          default: 0
     t.decimal  "weight"
     t.integer  "category_id"
     t.string   "unit"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.json     "images"
+    t.string   "directory_image"
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
@@ -124,6 +158,13 @@ ActiveRecord::Schema.define(version: 20160731060105) do
 
   add_index "zones", ["courier_id"], name: "index_zones_on_courier_id", using: :btree
 
+  add_foreign_key "carts", "shippable_countries"
+  add_foreign_key "carts", "users"
+  add_foreign_key "line_items", "carts"
+  add_foreign_key "line_items", "line_packages"
+  add_foreign_key "line_items", "products"
+  add_foreign_key "line_packages", "carts"
+  add_foreign_key "line_packages", "packages"
   add_foreign_key "products", "categories"
   add_foreign_key "shippable_countries", "zones"
   add_foreign_key "zone_pricings", "zones"

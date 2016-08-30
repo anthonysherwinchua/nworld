@@ -1,0 +1,70 @@
+- content_for :breadcrumb_title do
+  | My Cart
+
+- content_for :breadcrumb_links do
+  li
+    = link_to 'Home', root_path
+  li
+    | Shop
+
+section.my-cart-table
+  .container
+    .row.clearfix
+      .col-xs-12
+        table#my-cart.table.table-hover.table-condensed
+          thead
+            tr.my-cart-th-title
+              th.my-cart-th-title-1.hidden-xs
+                | Image
+              th.my-cart-th-title-2
+                | Product
+              th.my-cart-th-title-3
+                | Price
+              th.my-cart-th-title-4
+                | Quantity
+              th.my-cart-th-title-5
+                | Subtotal
+              th.my-cart-th-title-6
+          tbody
+            = render partial: 'shopping_carts/line_item', collection: @cart.line_items
+
+section.actions-cart.background-color-light-gray
+  .container
+    .row
+      .col-xs-12.col-sm-6.col-sm-offset-6
+        h3 Ship to
+        .form-input-group-addon
+          = form_for :shipping, url: shipping_path(cart), html: { method: :put, class: 'form-horizontal' } do |f|
+            .input-group.input-group-lg
+              = f.select :shippable_country, options_from_collection_for_select(ShippableCountry.all, 'id', 'name', @cart.shippable_country_id), {}, class: 'form-control input-lg'
+              span.input-group-addon
+                button.btn.btn-custom.btn-lg name="submit" type="submit" Apply
+
+section.cart-totals
+  .container
+    .row
+      .pull-right.animated-2.fadeIn-animation.col-xs-12.col-sm-6.in-view
+        .panel.panel-default.float-right
+          - decorate(@cart) do |decorated_cart|
+            .panel-heading
+              h2
+                i.flaticon-shoppingcarts6
+                | Totals
+            .panel-body
+              h1
+                span Cart Subtotal:
+                p = decorated_cart.subtotal
+            ul.list-group
+              li.list-group-item
+                h4
+                  span Shipping:
+                  p = decorated_cart.shipping_price
+              li.list-group-item
+                h4
+                  span Order Total:
+                  p = decorated_cart.total_price
+            .panel-footer
+              button.btn.btn-custom.btn-lg type="button"
+                i.fa.fa-angle-right
+                | &nbsp;
+                | Proceed To Checkout

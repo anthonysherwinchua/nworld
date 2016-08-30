@@ -13,6 +13,10 @@
 
 .container
   .row
+    .col-xs-12
+      .well
+        | Zone Pricing overrides the price set in Zone Range Pricing
+  .row
     - if @current_items.blank?
       .col-xs-12
         p No Available Zone Pricing for #{@zone.name}

@@ -25,6 +25,8 @@
             li.separator
             li
               span
-                = link_to '#' do
+                = link_to shopping_cart_path do
+                  label#cart-items-count.label.label-danger
+                    = cart.total_items
                   = fa_icon 'shopping-basket'
                   | Checkout

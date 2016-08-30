@@ -30,12 +30,6 @@
             a.right.carousel-control data-slide="next" href="#bs-carousel-slide"
               span.fa.fa-angle-right
         .col-xs-12.col-sm-6.col-md-5
-          .project-description-box
-            .section-title-2-min.no-padding-top
-              h4
-                span Description
-              hr
-            = decorated_product.description.html_safe
           .project-details-box
             .section-title-2-min.no-padding-top
               h4
@@ -47,11 +41,18 @@
                 = decorated_product.title
               li
                 span Price:
-                = decorated_product.selling_price
+                = decorated_product.price
               li
                 span Weight:
                 = decorated_product.packaged_weight
             p.project-details-btn
-              = link_to '#', class: 'btn btn-custom' do
+              = link_to line_items_path(product_id: @product.id), method: :post, class: 'btn btn-custom', remote: true, data: { disable_with: "Adding.." } do
                 = 'Add to Cart'
                 = fa_icon 'shopping-basket'
+
+          .project-description-box
+            .section-title-2-min.no-padding-top
+              h4
+                span Description
+              hr
+            = decorated_product.description.html_safe

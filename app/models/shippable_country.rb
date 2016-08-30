@@ -1,5 +1,6 @@
 class ShippableCountry < ActiveRecord::Base
 
+  has_many :carts, inverse_of: :shippable_country
   belongs_to :zone, inverse_of: :shippable_countries
 
   validates :name, presence: true

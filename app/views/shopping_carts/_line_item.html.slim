@@ -1,0 +1,20 @@
+- decorate(line_item) do |decorated_line_item|
+  - decorate(line_item.product) do |decorated_product|
+    tr.my-cart-tr-content.animated-2.fadeIn-animation.in-view
+      td.hidden-xs data-th="Image"
+        = image_tag decorated_product.directory_image_thumb
+      td data-th="Product"
+        h4
+          = link_to decorated_product.title, product_path(decorated_product.id), target: "_blank"
+      td data-th="Price"
+        = decorated_product.price
+      td data-th="Quantity"
+        = simple_form_for line_item, html: { class: 'line-item-quantity-form' } do |form|
+          = form.input :id, as: :hidden
+          = form.input :quantity, label: false
+          = form.submit class: 'btn btn-primary', value: 'Update'
+      td.text-center data-th="Subtotal"
+        = decorated_line_item.subtotal
+      td
+        = link_to line_item_path(id: line_item.id), method: :delete, class: 'btn btn-custom-outline btn-sm', data: { confirm: "Are you sure?" } do
+          = fa_icon 'close'

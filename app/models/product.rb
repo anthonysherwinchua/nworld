@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
 
+  mount_uploader :directory_image, DirectoryImageUploader
   mount_uploaders :images, ImageUploader
 
   enum status: [:draft, :brand_new, :featured, :regular]
