@@ -46,7 +46,6 @@ gem 'sidekiq'
 
 # 3rd party services
 gem 'fog-aws'
-gem "braintree", "~> 2.2"
 
 group :development, :test do
   gem 'byebug'
