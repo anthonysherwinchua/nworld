@@ -19,6 +19,7 @@ gem 'slim-rails'
 
 # Form builders & helpers
 gem 'simple_form'
+gem 'country_select'
 
 # Asset pipeline
 gem 'sassc-rails'

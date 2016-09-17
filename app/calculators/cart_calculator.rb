@@ -29,6 +29,10 @@ class CartCalculator
     subtotal + shipping_price
   end
 
+  def total_price_in_cent
+    (total_price * 100).round
+  end
+
   private
 
   def closest_pricing(zone, weight)
