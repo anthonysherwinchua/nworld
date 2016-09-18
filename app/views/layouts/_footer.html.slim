@@ -17,7 +17,7 @@ footer#footer-2
           li
             h4
               i.fa.fa-angle-double-right
-              a href="#"  About Us
+              a href=about_us_path  About Us
           li
             h4
               i.fa.fa-angle-double-right
@@ -25,15 +25,16 @@ footer#footer-2
           li
             h4
               i.fa.fa-angle-double-right
-              a href="#"  Terms &amp; Conditions
+              a href=terms_and_conditions_path  Terms &amp; Conditions
           li
             h4
               i.fa.fa-angle-double-right
-              a href="#"  Privacy Policy
+              a href=privacy_policy_path  Privacy Policy
   .footer-2-copyright
     .container
       .row
         .col-xs-12
           p.text-center
-            | © 2016 NWorld Products Online; Site by
-            = link_to ' Sherwin Chua', "https://github.com/anthonysherwinchua"
+            = link_to '© 2016 NWorld Products Online; Site by', root_path
+            | &nbsp;
+            = link_to 'Sherwin Chua', "https://github.com/anthonysherwinchua"
