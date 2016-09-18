@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'shopping_cart', to: 'shopping_carts#index'
 
   get 'about-us', to: 'pages#about'
+  get 'privacy-policy', to: 'pages#privacy'
 
   root to: 'pages#index'
 
