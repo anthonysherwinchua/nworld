@@ -5,8 +5,6 @@ class Cart < ActiveRecord::Base
   belongs_to :user, inverse_of: :carts
   belongs_to :shippable_country, inverse_of: :carts
 
-  validates :shippable_country, presence: true, on: :update
-
   def total_items
     line_items.sum(:quantity)
   end

@@ -9,7 +9,7 @@
 
 window.Nworld ||= {}
 Nworld.Views ||= {}
-Nworld.Views.Checkouts ||= {}
+Nworld.Views.Payments ||= {}
 
 Nworld.init = ->
   appData = $('body').data()

@@ -1209,8 +1209,8 @@ hr.testimonial-divider { margin-bottom: 8px !important; }
 .content-image-form-signup .btn { text-transform: none !important; margin-top: 10px; height: inherit !important; font-weight: bold; }
 
 /* Theme form */
-.theme-form-container { -moz-border-bottom-colors: none; -moz-border-left-colors: none; -moz-border-right-colors: none; -moz-border-top-colors: none; background: url("../images/border-form.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0); background-color: #FFFFFF; border-radius: 0; border: none; }
-.theme-form { background: url("../images/border-form.png") repeat-x scroll center bottom; border-radius: 0; padding: 13px 15px 17px 15px; border: 1px solid #C5C5C5; }
+.theme-form-container { -moz-border-bottom-colors: none; -moz-border-left-colors: none; -moz-border-right-colors: none; -moz-border-top-colors: none; background: asset-url("border-form.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0); background-color: #FFFFFF; border-radius: 0; border: none; }
+.theme-form { background: asset-url("border-form.png") repeat-x scroll center bottom; border-radius: 0; padding: 13px 15px 17px 15px; border: 1px solid #C5C5C5; }
 .theme-form-padding-bottom { padding-bottom: 0; }
 .theme-form h3 { color: #637282; font-weight: 700; margin-top: 10px; font-size: 1.375em; }
 .theme-form h4 { color: #637282; font-weight: 700; font-size: 1em; margin-bottom: 15px; }

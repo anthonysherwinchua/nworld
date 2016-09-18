@@ -1,7 +1,7 @@
 class ShoppingCartsController < ApplicationController
 
   def index
-    @cart = cart
+    @form = Cart::ContactDetailUpdateForm.new(cart)
   end
 
 end

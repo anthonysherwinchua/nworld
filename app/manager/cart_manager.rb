@@ -18,7 +18,7 @@ class CartManager
     quantity = params[:quantity].to_i
     errors << 'Quantity cannot be less than 1' if quantity < 1
     update_line_item_quantity(id: id, quantity: quantity)
-    errors.empty?
+    errors.blank?
   end
 
   def delete_line_item(id)
@@ -26,13 +26,6 @@ class CartManager
     unless line_item.destroy
       errors << line_item.errors
     end
-    errors.blank?
-  end
-
-  def update_shipping_country(params)
-    id = params[:shippable_country].to_i
-    shippable_country = ShippableCountry.find_by(id: id)
-    errors << @cart.errors unless @cart.update_attributes(shippable_country: shippable_country)
     errors.blank?
   end
 

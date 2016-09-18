@@ -17,10 +17,16 @@ ActiveRecord::Schema.define(version: 20160821063801) do
   enable_extension "plpgsql"
 
   create_table "carts", force: :cascade do |t|
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "user_id"
     t.integer  "shippable_country_id"
+    t.string   "first_name",           default: ""
+    t.string   "last_name",            default: ""
+    t.string   "address",              default: ""
+    t.string   "city",                 default: ""
+    t.string   "zip_code",             default: ""
+    t.string   "contact_number",       default: ""
   end
 
   add_index "carts", ["shippable_country_id"], name: "index_carts_on_shippable_country_id", using: :btree

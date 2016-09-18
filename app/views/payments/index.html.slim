@@ -1,0 +1,109 @@
+section.my-cart-table
+  .container
+    .row.clearfix
+      .col-xs-12
+        table#my-cart.table.table-hover.table-condensed
+          thead
+            tr.my-cart-th-title
+              th.my-cart-th-title-1.hidden-xs
+                | Image
+              th.my-cart-th-title-2
+                | Product
+              th.my-cart-th-title-3
+                | Price
+              th.my-cart-th-title-4
+                | Quantity
+              th.my-cart-th-title-5
+                | Subtotal
+              th.my-cart-th-title-6
+          tbody
+            = render partial: 'shopping_carts/line_item', collection: @cart.line_items
+
+section.cart-totals
+  .container
+    .row
+      .animated-2.fadeIn-animation.col-xs-12.col-sm-6.in-view
+        .theme-form-container
+          .theme-form
+            h3 Billing Details
+            .row
+              .col-xs-12.col-sm-6
+                dl
+                  dt = @cart.first_name
+                  dd First Name
+              .col-xs-12.col-sm-6
+                dl
+                  dt = @cart.last_name
+                  dd Last Name
+            .row
+              .col-xs-12
+                dl
+                  dt = @cart.address
+                  dd Address
+            .row
+              .col-xs-12.col-sm-6
+                dl
+                  dt = @cart.city
+                  dd City
+              .col-xs-12.col-sm-6
+                dl
+                  dt = @cart.zip_code
+                  dd ZIP code
+            .row
+              .col-xs-12
+                dl
+                  dt = @cart.shippable_country.name
+                  dd Country
+
+      .animated-2.fadeIn-animation.col-xs-12.col-sm-6.in-view
+        .panel.panel-default.float-right
+          - decorate(cart) do |decorated_cart|
+            .panel-heading
+              h2
+                i.flaticon-shoppingcarts6
+                | Totals
+            .panel-body
+              h1
+                span Cart Subtotal:
+                p = decorated_cart.subtotal
+            ul.list-group
+              li.list-group-item
+                h4
+                  span Shipping:
+                  p = decorated_cart.shipping_price
+              li.list-group-item
+                h4
+                  span Order Total:
+                  p = decorated_cart.total_price
+            .panel-footer
+              form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"
+                input type="hidden" name="bn"                 value="PP-BuyNowBF:btn_buynow_SM.gif:NonHostedGuest"
+                input type="hidden" name="cmd"                value="_cart"
+                input type="hidden" name="handling_1"         value="0.000"
+                input type="hidden" name="lc"                 value="PH"
+                input type="hidden" name="no_note"            value="0"
+                input type="hidden" name="tax_rate"           value="0.000"
+                input type="hidden" name="undefined_quantity" value="0"
+                input type="hidden" name="upload"             value="1"
+
+
+                input type="hidden" name="business"           value="ngan.sharlien+paypal@gmail.com"
+                input type="hidden" name="currency_code"      value="PHP"
+                input type="hidden" name="item_name"          value="NWorld"
+                input type="hidden" name="return"             value="#{payment_url(id: cart.id)}"
+
+                input type="hidden" name="invoice"            value="#{decorated_cart.id}"
+                input type="hidden" name="shipping_1"         value="#{decorated_cart.shipping_price_value}"
+                input type="hidden" name="subtotal"           value="#{decorated_cart.subtotal_value}"
+
+                - decorated_cart.line_items.each_with_index do |line_item, count|
+                  - decorate(line_item) do |decorated_line_item|
+                    - decorate(line_item.product) do |decorated_product|
+                      - item_number = count + 1
+                      input type="hidden" name="item_name_#{item_number}"   value="#{decorated_product.title}"
+                      input type="hidden" name="amount_#{item_number}"      value="#{line_item.product.price}"
+                      input type="hidden" name="quantity_#{item_number}"    value="#{decorated_line_item.quantity}"
+
+
+                input border="0" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" type="image"
+                img alt="" border="0" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1"

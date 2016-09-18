@@ -1,0 +1,43 @@
+- content_for :breadcrumb_title do
+  | My Cart
+
+- content_for :breadcrumb_links do
+  li
+    = link_to 'Home', root_path
+  li
+    | Billing Details
+
+section.checkout
+  .container
+    .row.clearfix
+      .col-xs-12.col-sm-6.col-sm-offset-3
+        .theme-form-container
+          .theme-form
+            h3 Billing Details
+            = form_for @form, as: :form, url: billing_path(cart), html: {method: :put, class: 'form-horizontal form-ui'} do |f|
+              = f.fields_for :cart do |ff|
+                .form-group
+                  .col-xs-12.col-sm-6
+                    = ff.label :first_name
+                    = ff.text_field :first_name, class: 'form-control'
+                  .col-xs-12.col-sm-6
+                    = ff.label :last_name
+                    = ff.text_field :last_name, class: 'form-control'
+                .form-group
+                  .col-xs-12
+                    = ff.label :address
+                    = ff.text_field :address, class: 'form-control'
+                .form-group
+                  .col-xs-12.col-sm-6
+                    = ff.label :city
+                    = ff.text_field :city, class: 'form-control'
+                  .col-xs-12.col-sm-6
+                    = ff.label :zip_code
+                    = ff.text_field :zip_code, class: 'form-control'
+                .form-group
+                  .col-xs-12
+                    = ff.label :country
+                    = ff.select :shippable_country, options_from_collection_for_select(ShippableCountry.all, 'id', 'name', @form.cart.shippable_country&.id), {}, class: 'form-control input-lg'
+
+              p.text-right
+                = f.submit '> Proceed', class: 'btn btn-custom btn-lg'

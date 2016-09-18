@@ -18,12 +18,13 @@ Rails.application.routes.draw do
     root to: 'base#dashboard'
   end
 
+  resources :contacts, only: [:update]
+  resources :billings, only: [:index, :update]
   resources :line_items, only: [:create, :update, :destroy]
   resources :products, only: [:index, :show]
-  resources :shipping, only: [:update]
+  resources :payments, only: [:index, :show]
 
   get 'shopping_cart', to: 'shopping_carts#index'
-  resources :checkouts,  only: [:new, :create, :show]
 
   root to: 'pages#index'
 
