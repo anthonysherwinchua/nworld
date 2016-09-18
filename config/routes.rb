@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   get 'about-us', to: 'pages#about'
   get 'privacy-policy', to: 'pages#privacy'
+  get 'terms-and-conditions', to: 'pages#terms'
 
   root to: 'pages#index'
 
