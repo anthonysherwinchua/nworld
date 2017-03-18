@@ -1,0 +1,82 @@
+= render 'layouts/admin/breadcrumb', current_item_name: @current_item.id
+
+section.my-cart-table
+  .container
+    .row.clearfix
+      .col-xs-12
+        table#my-cart.table.table-hover.table-condensed
+          thead
+            tr.my-cart-th-title
+              th.my-cart-th-title-1.hidden-xs
+                | Image
+              th.my-cart-th-title-2
+                | Product
+              th.my-cart-th-title-3
+                | Price
+              th.my-cart-th-title-4
+                | Quantity
+              th.my-cart-th-title-5
+                | Subtotal
+          tbody
+            = render partial: 'line_item', collection: @current_item.line_items
+
+section.cart-totals
+  .container
+    .row
+      .animated-2.fadeIn-animation.col-xs-12.col-sm-6.in-view
+        .theme-form-container
+          .theme-form
+            h3 Billing Details
+            .row
+              .col-xs-12.col-sm-6
+                dl
+                  dt = @current_item.first_name
+                  dd First Name
+              .col-xs-12.col-sm-6
+                dl
+                  dt = @current_item.last_name
+                  dd Last Name
+            .row
+              .col-xs-12
+                dl
+                  dt = @current_item.address
+                  dd Address
+            .row
+              .col-xs-12.col-sm-6
+                dl
+                  dt = @current_item.city
+                  dd City
+              .col-xs-12.col-sm-6
+                dl
+                  dt = @current_item.zip_code
+                  dd ZIP code
+            .row
+              .col-xs-12
+                dl
+                  dt = @current_item.shippable_country&.name
+                  dd Country
+
+      .animated-2.fadeIn-animation.col-xs-12.col-sm-6.in-view
+        .panel.panel-default.float-right
+          - decorate(@current_item) do |decorated_cart|
+            .panel-heading
+              h2
+                i.flaticon-shoppingcarts6
+                | Totals
+            .panel-body
+              h1
+                span Cart Subtotal:
+                p = decorated_cart.subtotal
+            ul.list-group
+              li.list-group-item
+                h4
+                  span Shipping:
+                  p = decorated_cart.shipping_price
+              li.list-group-item
+                h4
+                  span Order Total:
+                  p = decorated_cart.total_price
+            .panel-footer
+              = simple_form_for([:admin, @current_item]) do |f|
+                = f.input :status, collection: Cart.statuses.keys
+                = f.submit 'Update Status', class: 'btn btn-custom btn-lg'

@@ -1,0 +1,15 @@
+- decorate(line_item) do |decorated_line_item|
+  - decorate(line_item.product) do |decorated_product|
+    tr.my-cart-tr-content.animated-2.fadeIn-animation.in-view
+      td.hidden-xs data-th="Image"
+        = image_tag decorated_product.directory_image_thumb
+      td data-th="Product"
+        h4
+          = link_to decorated_product.title, product_path(decorated_product.id), target: "_blank"
+      td data-th="Price"
+        = decorated_product.price
+      td data-th="Quantity"
+        = line_item.quantity
+      td.text-center data-th="Subtotal"
+        = decorated_line_item.subtotal
+

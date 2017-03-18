@@ -90,7 +90,7 @@ section.cart-totals
                 input type="hidden" name="business"           value="ngan.sharlien+paypal@gmail.com"
                 input type="hidden" name="currency_code"      value="PHP"
                 input type="hidden" name="item_name"          value="NWorld"
-                input type="hidden" name="return"             value="#{payment_url(id: cart.id)}"
+                input type="hidden" name="return"             value="#{payment_url(id: cart.hashed_id)}"
 
                 input type="hidden" name="invoice"            value="#{decorated_cart.id}"
                 input type="hidden" name="shipping_1"         value="#{decorated_cart.shipping_price_value}"

@@ -1,2 +1,2 @@
-$(".modal-title").html("<%= @current_item.weight %>")
+$(".modal-title").html("<%= @current_item.weight_min %> to <%= @current_item.weight_max %>")
 $(".modal-body").html("<%= j render 'show' %>")

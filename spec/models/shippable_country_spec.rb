@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ShippableCountry, type: :model do
 
+  subject { build(:shippable_country) }
+
   it { is_expected.to validate_presence_of(:zone) }
   it { is_expected.to validate_presence_of(:name) }
 

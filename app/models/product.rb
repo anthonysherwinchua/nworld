@@ -13,4 +13,5 @@ class Product < ActiveRecord::Base
   validates :weight, numericality: { greater_than: 0 }
 
   scope :published, -> { where(['status <> ?', Product.statuses[:draft]]) }
+
 end

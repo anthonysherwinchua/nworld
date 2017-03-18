@@ -3,7 +3,7 @@ FactoryGirl.define do
     sequence(:name) { |i| "Category #{i}" }
 
     trait :invalid do
-      name nil
+      name ''
     end
   end
 end

@@ -7,43 +7,37 @@ class CartCalculator
   end
 
   def subtotal
-    cart.line_items.inject(0) do |sum, line_item|
+    @subtotal ||= cart.line_items.inject(0) do |sum, line_item|
       sum += LineItemCalculator.new(line_item).subtotal
     end
   end
 
   def shipping_price
-    zone = cart.shippable_country&.zone
-    return 0 unless zone
-    weight = total_weight
-    closest_pricing(zone, weight)
+    @shipping_price ||= zone ? closest_pricing(zone, total_weight) : 0
+  end
+
+  def zone
+    @zone ||= cart.shippable_country&.zone
   end
 
   def total_weight
-    cart.line_items.inject(0) do |sum, line_item|
+    @total_weight ||= cart.line_items.inject(0) do |sum, line_item|
       sum += LineItemCalculator.new(line_item).total_weight
     end
   end
 
   def total_price
-    subtotal + shipping_price
+    @total_price ||= subtotal + shipping_price
   end
 
   def total_price_in_cent
-    (total_price * 100).round
+    @total_price_in_cent ||= (total_price * 100).round
   end
 
   private
 
   def closest_pricing(zone, weight)
-    pricing = zone.zone_pricings.where('weight >= ? and weight < ?', weight, (weight + 0.5)).order('weight asc').first
-    pricing = closest_range_pricing(zone) unless pricing
-    pricing.price
-  end
-
-  def closest_range_pricing(zone)
-    # assuming there is only one zone range pricing per zone
-    zone.zone_range_pricings.last
+    @closest_pricing ||= zone.zone_pricings.where('weight_min >= ?', weight).order(weight_min: :asc).first&.price.to_f
   end
 
 end

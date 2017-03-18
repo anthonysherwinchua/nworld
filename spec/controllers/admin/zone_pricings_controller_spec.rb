@@ -12,6 +12,7 @@ RSpec.describe Admin::ZonePricingsController, type: :controller do
     let(:zones) { create_list(:zone, count) }
     let(:zone) { zones.first }
     let!(:zone_pricings) { create_list(:zone_pricing, count, zone: zone) }
+
     before { get :index, zone_id: zones.first }
 
     it { is_expected.to render_template(:index) }

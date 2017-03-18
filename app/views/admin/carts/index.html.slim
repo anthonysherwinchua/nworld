@@ -1,0 +1,26 @@
+= render 'layouts/admin/breadcrumb'
+
+.container
+  .row
+    .col-xs-12
+      table.table.table-hover.table-striped.table-condensed
+        thead
+          tr
+            th Status
+            th Invoice ID
+            th Item Amount
+            th Shipping Amount
+            th Total Amount
+            th width="20%"
+
+        tbody
+          - @current_items.each do |current_item|
+            - current_item.cart.tap do |cart|
+              tr
+                td = cart.status
+                td = cart.id
+                td = current_item.subtotal
+                td = current_item.shipping_price
+                td = current_item.total_price
+                td
+                  = link_to 'Show', [:admin, cart], class: 'btn btn-sm btn-info'
