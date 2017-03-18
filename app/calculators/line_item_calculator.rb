@@ -7,11 +7,11 @@ class LineItemCalculator
   end
 
   def subtotal
-    line_item.product.price * line_item.quantity
+    @subttotal ||= line_item.product.price * line_item.quantity
   end
 
   def total_weight
-    line_item.product.weight * line_item.quantity
+    @total_weight ||= line_item.product.weight * line_item.quantity
   end
 
 end
