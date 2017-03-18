@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'base#dashboard'
 
     resources :couriers
+    resources :carts, only: [:index, :show, :edit, :update, :new]
     resources :packages
     resources :products
     resources :shippable_countries
