@@ -1,8 +1,11 @@
 table.table.table-hover
   tbody
     tr
-      td Weight
-      td = @current_item.weight
+      td Minimum Weight
+      td = @current_item.weight_min
+    tr
+      td Maximum Weight
+      td = @current_item.weight_max
     tr
       td Price
       td = @current_item.price

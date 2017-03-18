@@ -1,11 +1,11 @@
 FactoryGirl.define do
   factory :shippable_country do
+    association :zone, factory: :zone, strategy: :create
 
-    zone
     sequence(:name) { |i| "Country ##{i}" }
 
     trait :invalid do
-      name nil
+      name ''
     end
 
   end

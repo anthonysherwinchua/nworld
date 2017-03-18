@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     resources :shippable_countries
     resources :users
     resources :zone_pricings
-    resources :zone_range_pricings
     resources :zones
 
     root to: 'base#dashboard'

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :product do
-    association :category, factory: :category, strategy: :build
+    association :category, factory: :category, strategy: :create
 
     sequence(:title) { |i| "Product Title #{i}" }
     description 'MyText'
@@ -14,7 +14,7 @@ FactoryGirl.define do
     end
 
     trait :invalid do
-      title nil
+      title ''
     end
   end
 end

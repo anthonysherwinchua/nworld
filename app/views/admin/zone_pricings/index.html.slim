@@ -13,10 +13,6 @@
 
 .container
   .row
-    .col-xs-12
-      .well
-        | Zone Pricing overrides the price set in Zone Range Pricing
-  .row
     - if @current_items.blank?
       .col-xs-12
         p No Available Zone Pricing for #{@zone.name}
@@ -34,8 +30,9 @@
               - grouped_item.each do |current_item|
                 tr
                   td
-                    = link_to '#', data: { xeditable: 'true', type: 'text', url: admin_zone_pricing_path(current_item), name: "weight", resource: 'zone_pricing' }
-                      = current_item.weight
+                    = current_item.weight_min
+                    | &nbsp;to&nbsp;
+                    = current_item.weight_max
                   td
                     = link_to '#', data: { xeditable: 'true', type: 'text', url: admin_zone_pricing_path(current_item), name: "price", resource: 'zone_pricing' }
                       = current_item.price
