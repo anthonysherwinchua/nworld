@@ -11,6 +11,8 @@ class CreateCarts < ActiveRecord::Migration
       t.string :city
       t.string :zip_code
       t.string :contact_number
+      t.string :hashed_id, index: true
+      t.integer :status, default: 0, index: true, null: false
 
       t.timestamps null: false
     end

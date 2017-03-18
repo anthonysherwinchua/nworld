@@ -25,13 +25,17 @@ ActiveRecord::Schema.define(version: 20160803152302) do
     t.string   "city"
     t.string   "zip_code"
     t.string   "contact_number"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "hashed_id"
+    t.integer  "status",               default: 0, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "carts", ["first_name"], name: "index_carts_on_first_name", using: :btree
+  add_index "carts", ["hashed_id"], name: "index_carts_on_hashed_id", using: :btree
   add_index "carts", ["last_name"], name: "index_carts_on_last_name", using: :btree
   add_index "carts", ["shippable_country_id"], name: "index_carts_on_shippable_country_id", using: :btree
+  add_index "carts", ["status"], name: "index_carts_on_status", using: :btree
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
