@@ -3,6 +3,7 @@ lock "3.8.0"
 
 set :application, "nworldproductsonline"
 set :repo_url, "https://github.com/anthonysherwinchua/nworld.git"
+set :branch, 'feature/deployment'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
