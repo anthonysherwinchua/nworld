@@ -11,6 +11,7 @@
 
 # Ignore the Postgres settings
 /config/database.yml
+/config/secrets.yml
 
 # Ignore the ENV storage
 .env
