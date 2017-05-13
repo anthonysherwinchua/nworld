@@ -1,9 +1,12 @@
 # config valid only for current version of Capistrano
-lock "3.8.0"
+lock "3.8.1"
 
 set :application, "nworldproductsonline"
 set :repo_url, "https://github.com/anthonysherwinchua/nworld.git"
 set :branch, 'feature/deployment'
+
+set :rvm_ruby_version, '2.3.1'
+set :rvm_custom_path, '/home/nworldproductsonline/.rvm'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
