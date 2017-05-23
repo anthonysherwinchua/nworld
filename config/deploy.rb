@@ -5,7 +5,8 @@ set :application, "nworldproductsonline"
 set :repo_url, "https://github.com/anthonysherwinchua/nworld.git"
 set :branch, 'feature/deployment'
 
-set :rvm_ruby_version, '2.3.1'
+set :rvm_type, :user
+set :rvm_ruby_version, '2.3.1@nworld'
 set :rvm_custom_path, '/home/nworldproductsonline/.rvm'
 
 # Default branch is :master
@@ -13,6 +14,8 @@ set :rvm_custom_path, '/home/nworldproductsonline/.rvm'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/nworldproductsonline/nworldproductsonline"
+
+set :shell, 'source ~/.bash_profile'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -25,7 +28,7 @@ set :deploy_to, "/home/nworldproductsonline/nworldproductsonline"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "config/secrets.yml"
+append :linked_files, "config/database.yml", "config/secrets.yml", ".env"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"

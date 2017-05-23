@@ -7,6 +7,7 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 set :stage, :production
+set :shell, '/bin/bash --login'
 server '139.162.51.176', user: 'nworldproductsonline', roles: %w{app web db}, password: 'C4rasF6qqMmu'
 
 role :app, %w{nworldproductsonline@139.162.51.176}
