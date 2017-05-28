@@ -8,12 +8,14 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 set :stage, :production
 set :shell, '/bin/bash --login'
-server '139.162.51.176', user: 'nworldproductsonline', roles: %w{app web db}, password: 'C4rasF6qqMmu'
 
-role :app, %w{nworldproductsonline@139.162.51.176}
-role :web, %w{nworldproductsonline@139.162.51.176}
-role :db,  %w{nworldproductsonline@139.162.51.176}
+require 'dotenv'
+Dotenv.load
+server ENV['SERVER_HOST'], user: ENV['SERVER_USERNAME'], roles: %w{app web db}, password: ENV['SERVER_PASSWORD']
 
+role :app, ["#{ENV['SERVER_USERNAME']}@#{ENV['SERVER_HOST']}"]
+role :web, ["#{ENV['SERVER_USERNAME']}@#{ENV['SERVER_HOST']}"]
+role :db, ["#{ENV['SERVER_USERNAME']}@#{ENV['SERVER_HOST']}"]
 
 # role-based syntax
 # ==================
