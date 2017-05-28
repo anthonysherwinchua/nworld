@@ -47,13 +47,16 @@ gem 'sidekiq'
 
 # 3rd party services
 gem 'fog-aws'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug'
-  gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem 'pry-rails'
+  gem 'capistrano', '~> 3.8'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rvm'
 end
 
 group :development do
