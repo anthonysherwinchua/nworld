@@ -3,7 +3,7 @@ lock "3.8.1"
 
 set :application, "nworldproductsonline"
 set :repo_url, "https://github.com/anthonysherwinchua/nworld.git"
-set :branch, 'feature/deployment'
+set :branch, 'master'
 
 set :rvm_type, :user
 set :rvm_ruby_version, '2.3.1@nworld'
