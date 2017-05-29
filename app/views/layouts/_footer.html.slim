@@ -4,7 +4,7 @@ footer#footer-2
       .col-xs-12
         h3.footer-2-logo.text-center
           = link_to root_path do
-            = image_tag 'logo.png'
+            = image_tag 'logo.png', height: '100px'
         .social-icons-2.div-center
           a.icon-facebook data-original-title="Facebook" data-placement="top" data-toggle="tooltip" href="https://www.facebook.com/#{ENV['FB_HANDLE']}" title=""
             i.fa.fa-facebook
@@ -30,6 +30,13 @@ footer#footer-2
             h4
               i.fa.fa-angle-double-right
               a href=privacy_policy_path  Privacy Policy
+      .col-xs-12
+        p style='color: gray;'
+          | This page belongs privately to the person who administers this Facebook account. This is not the official Facebook
+          | account of Alphanetworld Corporation or NWORLD. All dealings or transactions communicated in this page or
+          | thru its administrator is an official transaction with this page and not with Alphanetworld Corporation.
+          | For the official page, please visit
+          a href="www.thealphanetworld.com" target="_blank" style="color: gray"  www.thealphanetworld.com
   .footer-2-copyright
     .container
       .row
