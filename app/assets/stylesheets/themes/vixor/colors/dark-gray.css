@@ -318,8 +318,9 @@ body #features-3 .features-3-content:hover .feature-3-rounded { background-color
 body figure.effect-2:hover figcaption { background: #31373F; }
 
 /* Effect 3 */
-figure.effect-2 { background: #31373F; }
-figure.effect-3 h2 { background-color: #31373F; }
+figure.effect-2 { background: transparent; }
+figure.effect-3 h2 { background-color: transparent; }
+figure.effect-2 p { background-color: #31373F; }
 
 /* Company */
 /* Meet the team 2 */
