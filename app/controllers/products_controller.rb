@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
 
   def index
-    @products = Product.published
+    @nlighten_products = Product.published.where(category: Category.find_by(name: 'NLIGHTEN'))
+    @nhance_products = Product.published.where(category: Category.find_by(name: 'NHANCE'))
   end
 
   def show

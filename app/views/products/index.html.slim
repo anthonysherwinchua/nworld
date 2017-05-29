@@ -8,5 +8,15 @@
     span.active Products
 
 section.portfolio-3-column
+
   .container.text-center
-    = render @products
+    h1 Nlighten
+    = render partial: 'product', collection: @nlighten_products
+
+  .container
+    .col-xs-12
+      hr
+
+  .container.text-center
+    h1 Nhance
+    = render partial: 'product', collection: @nhance_products
