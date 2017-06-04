@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     resources :couriers
     resources :carts, only: [:index, :show, :edit, :update, :new]
     resources :packages
-    resources :pages
     resources :products
     resources :shippable_countries
     resources :users
@@ -28,7 +27,6 @@ Rails.application.routes.draw do
   get 'shopping_cart', to: 'shopping_carts#index'
 
   get 'about-us', to: 'pages#about'
-  get 'contact-us', to: 'pages#contact'
   get 'privacy-policy', to: 'pages#privacy'
   get 'terms-and-conditions', to: 'pages#terms'
 
