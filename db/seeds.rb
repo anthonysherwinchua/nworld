@@ -1,4 +1,4 @@
-files = ['users', 'couriers', 'zones', 'shippable_countries', 'zone_pricings', 'categories', 'products']
+files = ['users', 'couriers', 'zones', 'shippable_countries', 'zone_pricings', 'categories', 'products', 'pages']
 
 files.each do |file|
   if file.singularize.camelize.constantize.count < 1
