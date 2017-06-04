@@ -15,8 +15,6 @@
         ul.nav.navbar-nav.navbar-left
           li class=active_link?('base')
             = link_to 'Dashboard', admin_dashboard_path
-          li class=active_link?('pages')
-            = link_to 'Pages', admin_pages_path
           li class=active_link?(['couriers', 'zones', 'shippable_countries', 'zone_range_pricings', 'zone_pricings'])
             a.dropdown-toggle data-toggle='dropdown' href='#'
               | Shipping
