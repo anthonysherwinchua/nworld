@@ -10,6 +10,12 @@
     span.active
       = @product.title
 
+- content_for :meta_description do
+  = strip_tags @product.description.split.join(' ')
+
+- content_for :meta_keywords do
+  = @product.tags
+
 - decorate(@product) do |decorated_product|
   section#single-portfolio-item.background-color-light-gray
     .container
