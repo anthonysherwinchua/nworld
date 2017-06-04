@@ -10,6 +10,9 @@
     span.active
       = @product.title
 
+- content_for :page_title do
+  = @product.title
+
 - content_for :meta_description do
   = strip_tags @product.description.split.join(' ')
 

@@ -1,0 +1,17 @@
+- content_for :page_title do
+  = @page.title
+
+- content_for :meta_description do
+  = strip_tags @page.content.split.join(' ')
+
+- content_for :meta_keywords do
+  = @page.tags
+
+
+<section><div class=\"container\"><div class=\"row clearfix\"><div class=\"col-xs-12\">
+
+section
+  .container
+    .row.clearfix
+      .col-xs-12
+        = @page.content.html_safe
