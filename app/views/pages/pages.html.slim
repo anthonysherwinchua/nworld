@@ -7,11 +7,9 @@
 - content_for :meta_keywords do
   = @page.tags
 
-
-<section><div class=\"container\"><div class=\"row clearfix\"><div class=\"col-xs-12\">
-
 section
   .container
     .row.clearfix
       .col-xs-12
-        = @page.content.html_safe
+        .section-title-1-min
+          = @page.content.html_safe
