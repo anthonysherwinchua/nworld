@@ -1,7 +1,3 @@
-table.table.table-hover
-  tbody
-    tr
-      td Price
-      td = @current_item.price
-      td Worth
-      td = @current_item.worth
+p Tags: #{@current_item.tags}
+hr
+= @current_item.content.html_safe

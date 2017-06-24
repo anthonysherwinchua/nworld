@@ -1,4 +1,18 @@
-= render 'layouts/admin/breadcrumb', current_item_name: @current_item.name
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'Pages', admin_pages_path(@current_item)
+
+          li Show
+
+          li = @current_item.name
+
+        .breadcrumb-right
+
+          = link_to 'Edit', edit_admin_page_path(@current_item), class: 'btn btn-default'
+          = link_to 'Back', admin_pages_path(@current_item), class: 'btn btn-default'
 
 .container
   .row
@@ -6,7 +20,7 @@
       .panel.panel-default
 
         .panel-heading
-          h4.panel-title Package
+          h4.panel-title Page
 
         .panel-body
           = render 'show'

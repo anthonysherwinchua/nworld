@@ -1,3 +1,15 @@
-= render 'layouts/admin/breadcrumb', current_item_name: "#{@current_item.weight_min} to #{@current_item.weight_max}"
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'Zone Pricings', admin_zone_pricings_path
+
+          li Edit
+
+          li #{@current_item.weight_min} to #{@current_item.weight_max}
+
+        .breadcrumb-right
+          = link_to 'Back', admin_zone_pricings_path, class: 'btn btn-default'
 
 = render 'admin/base/edit', current_item: @current_item

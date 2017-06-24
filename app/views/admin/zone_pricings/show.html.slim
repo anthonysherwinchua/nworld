@@ -1,4 +1,18 @@
-= render 'layouts/admin/breadcrumb', current_item_name: "Pricing of #{@current_item.weight_min}kg to #{@current_item.weight_max}kg for #{@current_item.zone.name}"
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'Zone Pricings', admin_zone_pricings_path(@current_item)
+
+          li Show
+
+          li Pricing of #{@current_item.weight_min}kg to #{@current_item.weight_max}kg for #{@current_item.zone.name}
+
+        .breadcrumb-right
+
+          = link_to 'Edit', edit_admin_zone_pricing_path(@current_item), class: 'btn btn-default'
+          = link_to 'Back', admin_zone_pricings_path(@current_item), class: 'btn btn-default'
 
 .container
   .row

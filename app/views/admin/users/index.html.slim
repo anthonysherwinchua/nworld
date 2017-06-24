@@ -1,4 +1,12 @@
-= render 'layouts/admin/breadcrumb'
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'User', admin_users_path
+
+        .breadcrumb-right
+          = link_to 'New', new_admin_user_path, class: 'btn btn-default'
 
 .container
   .row

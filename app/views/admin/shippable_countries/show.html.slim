@@ -1,4 +1,18 @@
-= render 'layouts/admin/breadcrumb', current_item_name: @current_item.name
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'Shippable Countries', admin_shippable_countries_path(@current_item)
+
+          li Show
+
+          li = @current_item.name
+
+        .breadcrumb-right
+
+          = link_to 'Edit', edit_admin_shippable_country_path(@current_item), class: 'btn btn-default'
+          = link_to 'Back', admin_shippable_countries_path(@current_item), class: 'btn btn-default'
 
 .container
   .row
