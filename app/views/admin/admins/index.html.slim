@@ -1,0 +1,28 @@
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'Admin', admin_admins_path
+
+        .breadcrumb-right
+          = link_to 'New', new_admin_admin_path, class: 'btn btn-default'
+
+.container
+  .row
+    .col-xs-12
+      table.table.table-hover.table-striped.table-condensed
+        thead
+          tr
+            th Email
+            th width="20%"
+
+        tbody
+          - @current_items.each do |current_item|
+            tr
+              td = current_item.email
+              td
+                = link_to 'Show', admin_admin_path(current_item), class: 'btn btn-sm btn-info', remote: true, data: { toggle: 'modal', target: '#default-modal' }
+                = link_to 'Edit', edit_admin_admin_path(current_item), class: 'btn btn-sm btn-primary'
+                = link_to 'Delete', admin_admin_path(current_item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+

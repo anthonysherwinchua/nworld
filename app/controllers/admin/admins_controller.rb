@@ -1,10 +1,10 @@
-class Admin::UsersController < Admin::BaseController
+class Admin::AdminsController < Admin::BaseController
 
   before_action :authorize_admin_access?
   before_action :prepare_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @current_items = User.order('email asc')
+    @current_items = User.with_role(:admin).order('email asc')
   end
 
   def show
@@ -20,7 +20,7 @@ class Admin::UsersController < Admin::BaseController
   def create
     @current_item = User.new(user_params.merge(password: 'password123'))
     if @current_item.save
-      redirect_to admin_users_path, notice: 'Successfully created user'
+      redirect_to admin_admins_path, notice: 'Successfully created user'
     else
       flash.now[:error] = @current_item.errors.full_messages.to_sentence
       render :new
@@ -29,7 +29,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @current_item.update_attributes(user_params)
-      redirect_to admin_users_path, notice: 'Successfully updated user'
+      redirect_to admin_admins_path, notice: 'Successfully updated user'
     else
       flash.now[:error] = @current_item.errors.full_messages.to_sentence
       render :edit
@@ -38,7 +38,7 @@ class Admin::UsersController < Admin::BaseController
 
   def destroy
     @current_item.destroy
-    redirect_to admin_users_path
+    redirect_to admin_admins_path
   end
 
   private
@@ -48,7 +48,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:admin).permit(:email)
   end
 
 end
