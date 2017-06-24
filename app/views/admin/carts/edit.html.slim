@@ -1,4 +1,16 @@
-= render 'layouts/admin/breadcrumb', current_item_name: @current_item.title_was
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'Orders', admin_carts_path
+
+          li Edit
+
+          li = @current_item.title_was
+
+        .breadcrumb-right
+          = link_to 'Back', admin_carts_path
 
 .container
   .row

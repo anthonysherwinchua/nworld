@@ -1,3 +1,13 @@
-= render 'layouts/admin/breadcrumb', current_item_parent_name: @current_item_parent&.email
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'Users', admin_users_path
+          li New
+
+        .breadcrumb-right
+          = link_to 'Back', admin_users_path, class: 'btn btn-default'
+
 
 = render 'admin/base/new', current_item: @current_item

@@ -1,3 +1,15 @@
-= render 'layouts/admin/breadcrumb', current_item_name: @current_item.name_was
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'Couriers', admin_couriers_path
+
+          li Edit
+
+          li = @current_item.name_was
+
+        .breadcrumb-right
+          = link_to 'Back', admin_couriers_path, class: 'btn btn-default'
 
 = render 'admin/base/edit', current_item: @current_item

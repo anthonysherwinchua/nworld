@@ -1,4 +1,17 @@
-= render 'layouts/admin/breadcrumb', current_item_name: @current_item.id
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'Orders', admin_carts_path(@current_item)
+
+          li Show
+
+          li = @current_item.hashed_id
+
+        .breadcrumb-right
+
+          = link_to 'Back', admin_carts_path(@current_item), class: 'btn btn-default'
 
 section.my-cart-table
   .container
