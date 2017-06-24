@@ -10,6 +10,8 @@ RSpec.describe Admin::AdminsController, type: :controller do
   describe 'GET #index' do
     let(:count) { 3 }
     let!(:admins) { create_list(:user, count) }
+    let!(:non_admin_1) { create(:user, :retailer) }
+    let!(:non_admin_2) { create(:user, :wholesaler) }
     let(:all_admins) { [[admin] + admins].flatten.map(&:id).sort }
 
     before { get :index }

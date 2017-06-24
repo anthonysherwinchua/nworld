@@ -1,6 +1,6 @@
 RSpec.shared_examples 'admin-only controller' do
   context 'other role is logged in' do
-    let(:other) { create(:user, :other_role) }
+    let(:other) { create(:user, :retailer) }
 
     before { sign_in other }
 

@@ -34,8 +34,10 @@
               li = link_to 'Products', admin_products_path
           li class=active_link?('carts')
             = link_to 'Orders', admin_carts_path
-          li class=active_link?('users')
+          li class=active_link?('admins')
             = link_to 'Admins', admin_admins_path
+          li class=active_link?('users')
+            = link_to 'Retailer / Wholesaler Code', admin_users_path
 
         ul.nav.navbar-nav.navbar-right
           li

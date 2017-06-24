@@ -44,7 +44,7 @@ class Admin::AdminsController < Admin::BaseController
   private
 
   def prepare_user
-    @current_item = User.find(params[:id])
+    @current_item = User.with_role(:admin).find(params[:id])
   end
 
   def user_params

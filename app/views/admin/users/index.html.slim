@@ -1,0 +1,30 @@
+.container
+  .row
+    .col-xs-12
+      .breadcrumb-container.breadcrumb-blue
+        ol.breadcrumb
+          li = link_to 'Retailer / Wholesaler Code', admin_users_path
+
+        .breadcrumb-right
+          = link_to 'New', new_admin_user_path, class: 'btn btn-default'
+
+.container
+  .row
+    .col-xs-12
+      table.table.table-hover.table-striped.table-condensed
+        thead
+          tr
+            th Code
+            th Retailer / Wholesaler
+            th width="20%"
+
+        tbody
+          - @current_items.each do |current_item|
+            tr
+              td = current_item.code
+              td = current_item.roles.first&.name&.titleize
+              td
+                = link_to 'Show', admin_user_path(current_item), class: 'btn btn-sm btn-info', remote: true, data: { toggle: 'modal', target: '#default-modal' }
+                = link_to 'Edit', edit_admin_user_path(current_item), class: 'btn btn-sm btn-primary'
+                = link_to 'Delete', admin_user_path(current_item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+

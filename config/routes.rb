@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :pages
     resources :products
     resources :shippable_countries
+    resources :users
     resources :zone_pricings
     resources :zones
 
