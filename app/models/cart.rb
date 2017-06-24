@@ -1,6 +1,5 @@
 class Cart < ActiveRecord::Base
 
-  has_many :line_packages, inverse_of: :cart, dependent: :destroy
   has_many :line_items, -> { order(:id) }, inverse_of: :cart, dependent: :destroy
   belongs_to :user, inverse_of: :carts
   belongs_to :shippable_country, inverse_of: :carts

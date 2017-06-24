@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604055731) do
+ActiveRecord::Schema.define(version: 20170624075839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,34 +55,15 @@ ActiveRecord::Schema.define(version: 20170604055731) do
   add_index "couriers", ["name"], name: "index_couriers_on_name", using: :btree
 
   create_table "line_items", force: :cascade do |t|
-    t.integer  "cart_id",                     null: false
-    t.integer  "line_package_id"
-    t.integer  "product_id",                  null: false
-    t.integer  "quantity",        default: 0, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "cart_id",                null: false
+    t.integer  "product_id",             null: false
+    t.integer  "quantity",   default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
-  add_index "line_items", ["line_package_id"], name: "index_line_items_on_line_package_id", using: :btree
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
-
-  create_table "line_packages", force: :cascade do |t|
-    t.integer  "cart_id",    null: false
-    t.integer  "package_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "line_packages", ["cart_id"], name: "index_line_packages_on_cart_id", using: :btree
-  add_index "line_packages", ["package_id"], name: "index_line_packages_on_package_id", using: :btree
-
-  create_table "packages", force: :cascade do |t|
-    t.decimal  "price",      precision: 8, scale: 2, null: false
-    t.decimal  "worth",      precision: 8, scale: 2, null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
 
   create_table "pages", force: :cascade do |t|
     t.string   "name"
@@ -185,10 +166,7 @@ ActiveRecord::Schema.define(version: 20170604055731) do
   add_foreign_key "carts", "shippable_countries"
   add_foreign_key "carts", "users"
   add_foreign_key "line_items", "carts"
-  add_foreign_key "line_items", "line_packages"
   add_foreign_key "line_items", "products"
-  add_foreign_key "line_packages", "carts"
-  add_foreign_key "line_packages", "packages"
   add_foreign_key "products", "categories"
   add_foreign_key "shippable_countries", "zones"
   add_foreign_key "users_roles", "roles"

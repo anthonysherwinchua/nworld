@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Cart, type: :model do
 
-  it { is_expected.to have_many(:line_packages).inverse_of(:cart) }
   it { is_expected.to have_many(:line_items).inverse_of(:cart) }
 
 end

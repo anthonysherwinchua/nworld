@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
     resources :couriers
     resources :carts, only: [:index, :show, :edit, :update, :new]
-    resources :packages
     resources :pages
     resources :products
     resources :shippable_countries
