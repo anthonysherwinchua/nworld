@@ -78,6 +78,10 @@ section.cart-totals
                   p = decorated_cart.shipping_price
               li.list-group-item
                 h4
+                  span Discount:
+                  p = decorated_cart.discount_total
+              li.list-group-item
+                h4
                   span Order Total:
                   p = decorated_cart.total_price
             .panel-footer
@@ -90,7 +94,6 @@ section.cart-totals
                 input type="hidden" name="tax_rate"           value="0.000"
                 input type="hidden" name="undefined_quantity" value="0"
                 input type="hidden" name="upload"             value="1"
-
 
                 input type="hidden" name="business"           value="ngan.sharlien+paypal@gmail.com"
                 input type="hidden" name="currency_code"      value="PHP"

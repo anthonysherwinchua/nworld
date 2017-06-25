@@ -10,6 +10,10 @@ class CartDecorator < SimpleDelegator
     @subtotal ||= "PHP #{subtotal_value}"
   end
 
+  def discount_total
+    @discount_total ||= "PHP #{calculator.discount_price}"
+  end
+
   def total_weight
     @total_weight ||= "#{calculator.total_weight} kg(s)"
   end
