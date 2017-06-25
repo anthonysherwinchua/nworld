@@ -15,6 +15,10 @@ section.checkout
           .theme-form
             h3 Billing Details
             = form_for @form, as: :form, url: billing_path(cart), html: {method: :put, class: 'form-horizontal form-ui'} do |f|
+              .form-group
+                .col-xs-12.col-sm-6
+                  = f.label :code, 'Retailer / Wholesaler Code'
+                  = f.text_field :code, class: 'form-control'
               = f.fields_for :cart do |ff|
                 .form-group
                   .col-xs-12.col-sm-6

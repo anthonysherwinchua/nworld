@@ -18,7 +18,7 @@ class BillingsController < ApplicationController
   private
 
   def cart_params
-    params.require(:form).permit(cart_attributes: [:first_name, :last_name, :address, :zip_code, :city,
+    params.require(:form).permit(:code, cart_attributes: [:first_name, :last_name, :address, :zip_code, :city,
                                                    :shippable_country])
   end
 
