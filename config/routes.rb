@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :pages
     resources :products
     resources :shippable_countries
-    resources :users
+    resources :users, only: [:index, :show, :new, :create, :update]
     resources :zone_pricings
     resources :zones
 

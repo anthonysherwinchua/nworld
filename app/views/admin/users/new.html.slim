@@ -20,7 +20,8 @@
 
         = simple_form_for @current_item, url: admin_users_path(@current_item) do |f|
           .panel-body
-            = render 'form', f: f
+            = f.input :code
+            = f.input :role, collection: f.object.class::ROLES, include_blank: false, input_html: { multiple: false }
 
           .panel-footer
 

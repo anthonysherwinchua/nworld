@@ -26,41 +26,32 @@ RSpec.describe Admin::UsersController, type: :controller do
     before { get :new }
 
     it { is_expected.to render_template(:new) }
-    it { expect(assigns(:current_item)).to be_new_record }
-    it { expect(assigns(:current_item)).to be_a_new(User) }
+    it { expect(assigns(:current_item)).to be_a(CreateCodeForm) }
 
   end
 
   describe 'POST #create' do
 
-    context 'with valid attributes as retailer' do
+    ['retailer', 'wholesaler'].each do |tier|
 
-      let(:user_attrs) { { code: 'abc123', role_ids: 'retailer' } }
+      context "with valid attributes as #{tier}" do
 
-      before { post :create, user: user_attrs }
+        let(:user_attrs) { { code: 'abc123', role: tier } }
 
-      it { is_expected.to redirect_to(admin_users_path) }
-      it { expect(assigns(:current_item)).to be_persisted }
-      it { expect(assigns(:current_item).roles.first.name).to eq('retailer')}
+        subject { post :create, create_code_form: user_attrs }
 
-    end
+        it { is_expected.to redirect_to(admin_users_path) }
+        it { expect{ subject }.to change { User.count }.by(1) }
+        it { subject; expect(User.last.roles.first.name).to eq(tier)}
 
-    context 'with valid attributes as wholesaler' do
-
-      let(:user_attrs) { { code: 'abc123', role_ids: 'wholesaler' } }
-
-      before { post :create, user: user_attrs }
-
-      it { is_expected.to redirect_to(admin_users_path) }
-      it { expect(assigns(:current_item)).to be_persisted }
-      it { expect(assigns(:current_item).roles.first.name).to eq('wholesaler')}
+      end
 
     end
 
     context 'with invalid attributes' do
       let(:user_attrs) { { code: '' } }
 
-      before { post :create, user: user_attrs }
+      before { post :create, create_code_form: user_attrs }
 
       it { is_expected.to render_template(:new) }
       it { expect(assigns(:current_item)).not_to be_persisted }
@@ -69,56 +60,15 @@ RSpec.describe Admin::UsersController, type: :controller do
 
   end
 
-  describe 'GET #edit' do
+  describe 'PUT #update' do
 
     let(:user) { create(:user, :retailer) }
 
-    before { get :edit, id: user }
+    before { put :update, id: user }
 
-    it { is_expected.to render_template(:edit) }
-    it { expect(assigns(:current_item)).to be }
-
-  end
-
-  describe 'PUT #update' do
-
-    context 'with valid attributes as retailer' do
-
-      let(:user) { create(:user, :retailer) }
-      let(:user_attrs) { { code: 'def456', role_ids: 'wholesaler' } }
-
-      before { put :update, id: user, user: user_attrs }
-
-      it { is_expected.to redirect_to(admin_users_path) }
-      it { expect(assigns(:current_item).errors).to be_empty }
-      it { expect(assigns(:current_item).roles.first.name).to eq('wholesaler')}
-
-    end
-
-    context 'with valid attributes as wholesaler' do
-
-      let(:user) { create(:user, :wholesaler) }
-      let(:user_attrs) { { code: 'def456', role_ids: 'retailer' } }
-
-      before { put :update, id: user, user: user_attrs }
-
-      it { is_expected.to redirect_to(admin_users_path) }
-      it { expect(assigns(:current_item).errors).to be_empty }
-      it { expect(assigns(:current_item).roles.first.name).to eq('retailer')}
-
-    end
-
-    context 'with invalid attributes' do
-
-      let(:user) { create(:user, :retailer) }
-      let(:user_attrs) { { code: '' } }
-
-      before { put :update, id: user, user: user_attrs }
-
-      it { is_expected.to render_template(:edit) }
-      it { expect(assigns(:current_item).errors).to be }
-
-    end
+    it { is_expected.to redirect_to(admin_users_path) }
+    it { expect(assigns(:current_item).errors).to be_empty }
+    it { expect(assigns(:current_item).roles.first.name).to eq('wholesaler')}
 
   end
 
