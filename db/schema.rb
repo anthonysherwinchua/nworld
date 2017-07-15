@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170624082011) do
+ActiveRecord::Schema.define(version: 20170715061353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 20170624082011) do
   end
 
   add_index "couriers", ["name"], name: "index_couriers_on_name", using: :btree
+
+  create_table "line_item_discounts", force: :cascade do |t|
+    t.integer  "line_item_id"
+    t.string   "source"
+    t.decimal  "amount",       precision: 8, scale: 2, null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "line_item_discounts", ["line_item_id"], name: "index_line_item_discounts_on_line_item_id", using: :btree
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "cart_id",                null: false
@@ -166,6 +176,7 @@ ActiveRecord::Schema.define(version: 20170624082011) do
 
   add_foreign_key "carts", "shippable_countries"
   add_foreign_key "carts", "users"
+  add_foreign_key "line_item_discounts", "line_items"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "products"
   add_foreign_key "products", "categories"

@@ -16,50 +16,34 @@ class CartCalculator
     @shipping_price ||= zone ? closest_pricing(zone, total_weight) : 0
   end
 
-  def discount_price
-    @discount_price ||= if cart.user.blank?
-                          0
-                        elsif cart.user.has_role?('wholesaler')
-                          wholesaler_discount
-                        elsif cart.user.has_role?('retailer')
-                          retailer_discount
-                        else
-                          0
-                        end
-  end
-
-  def retailer_discount
-    @retailer_discount ||= ((subtotal - 500) * 0.1).abs
-  end
-
-  def wholesaler_discount
-    ignored_total = 0
-    running_total = 0
-    retailer_discount = 0
-    wholesaler_discount = 0
-    sorted_line_items.each do |line_item|
-      0.upto(line_item.quantity).each do |item|
-        item_price = line_item.product.price
-        running_total += item_price
-
-        if ignored_total <= 500
-          ignored_total += item_price
-        elsif running_total > 500 && (running_total + item_price < 16_000)
-          retailer_discount += item_price
-        else
-          wholesaler_discount += item_price
-        end
-      end
-    end
-
-    retailer_discount = retailer_discount * 0.1
-    wholesaler_discount = wholesaler_discount * 0.25
-    retailer_discount + wholesaler_discount
-  end
-
-  def sorted_line_items
-    @sorted_line_items ||= cart.line_items.sort{ |a, b| a.product.price <=> b.product.price }
-  end
+  # def discount_price
+  #   @discount_price ||= if cart.user.blank?
+  #                         0
+  #                       elsif cart.user.has_role?('wholesaler')
+  #                         wholesaler_discount
+  #                       elsif cart.user.has_role?('retailer')
+  #                         retailer_discount
+  #                       else
+  #                         0
+  #                       end
+  # end
+  #
+  # def retailer_discount
+  #   @retailer_discount ||= ((subtotal - 500) * 0.1).abs
+  # end
+  #
+  # def wholesaler_discount
+  #   if subtotal >= 16_0000
+  #     _current_subtotal = 1_600 # 14_400
+  #
+  #   else
+  #     retailer_discount
+  #   end
+  # end
+  #
+  # def sorted_line_items
+  #   @sorted_line_items ||= cart.line_items.sort{ |a, b| a.product.price <=> b.product.price }
+  # end
 
   def zone
     @zone ||= cart.shippable_country&.zone
