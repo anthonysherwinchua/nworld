@@ -7,23 +7,11 @@ class CartCalculator
   end
 
   def subtotal
-    @subtotal ||= cart.line_items.inject(0) do |sum, line_item|
-      sum += LineItemCalculator.new(line_item).subtotal
-    end
+    @subtotal ||= LineItemsCalculator.new(cart).subtotal
   end
 
   def shipping_price
-    @shipping_price ||= zone ? closest_pricing(zone, total_weight) : 0
-  end
-  
-  def zone
-    @zone ||= cart.shippable_country&.zone
-  end
-
-  def total_weight
-    @total_weight ||= cart.line_items.inject(0) do |sum, line_item|
-      sum += LineItemCalculator.new(line_item).total_weight
-    end
+    @shipping_price ||= ShippingCalculator.new(cart).shipping_price
   end
 
   def total_price
@@ -32,12 +20,6 @@ class CartCalculator
 
   def total_price_in_cent
     @total_price_in_cent ||= (total_price * 100).round
-  end
-
-  private
-
-  def closest_pricing(zone, weight)
-    @closest_pricing ||= zone.zone_pricings.where('weight_min >= ?', weight).order(weight_min: :asc).first&.price.to_f
   end
 
 end
