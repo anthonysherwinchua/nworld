@@ -9,7 +9,7 @@ class CartManager
 
   def add_product(product_id, quantity = 1)
     product = Product.find(product_id)
-    line_item = @cart.line_items.find_or_create_by(product: product)
+    line_item = @cart.line_items.find_or_create_by(product: product, unit_price: product.price)
     line_item.increment!(:quantity, quantity)
   end
 

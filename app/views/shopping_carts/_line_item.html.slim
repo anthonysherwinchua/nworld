@@ -7,14 +7,25 @@
         h4
           = link_to decorated_product.title, product_path(decorated_product.id), target: "_blank"
       td data-th="Price"
-        = decorated_product.price
+        = decorated_line_item.unit_price
       td data-th="Quantity"
-        = simple_form_for line_item, html: { class: 'line-item-quantity-form' } do |form|
-          = form.input :id, as: :hidden
-          = form.input :quantity, label: false
-          = form.submit class: 'btn btn-primary', value: 'Update'
+        - if controller_name == 'payments'
+          = line_item.quantity
+        - else
+          = simple_form_for line_item, html: { class: 'line-item-quantity-form' } do |form|
+            = form.input :id, as: :hidden
+            = form.input :quantity, label: false
+            = form.submit class: 'btn btn-primary', value: 'Update'
       td.text-center data-th="Subtotal"
         = decorated_line_item.subtotal
-      td
-        = link_to line_item_path(id: line_item.id), method: :delete, class: 'btn btn-custom-outline btn-sm', data: { confirm: "Are you sure?" } do
-          = fa_icon 'close'
+
+      - if controller_name == 'payments'
+        td
+          ul
+          - line_item.line_item_discounts.each do |discount|
+            - decorate(discount) do |decorated_discount|
+              li = decorated_discount.unit_discount
+      - else
+        td
+          = link_to line_item_path(id: line_item.id), method: :delete, class: 'btn btn-custom-outline btn-sm', data: { confirm: "Are you sure?" } do
+            = fa_icon 'close'

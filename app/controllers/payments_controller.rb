@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
 
   def index
     @cart = cart
+    DiscountCalculator.new(@cart).recalculate!
   end
 
   def show

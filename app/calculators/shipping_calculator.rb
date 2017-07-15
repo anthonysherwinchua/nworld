@@ -6,8 +6,8 @@ class ShippingCalculator
     @cart = cart
   end
 
-  def shipping_price
-    @shipping_price ||= zone ? closest_pricing(zone, total_weight) : 0
+  def total_price
+    @total_price ||= zone ? closest_pricing(zone, total_weight) : 0
   end
 
   def zone

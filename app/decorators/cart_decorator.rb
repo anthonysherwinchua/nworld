@@ -3,7 +3,7 @@ class CartDecorator < SimpleDelegator
   attr_reader :subtotal, :shipping_price, :calculator
 
   def subtotal_value
-    @subtotal ||= calculator.subtotal
+    @subtotal_value ||= calculator.line_items_price
   end
 
   def subtotal
@@ -11,7 +11,7 @@ class CartDecorator < SimpleDelegator
   end
 
   def discount_total
-    @discount_total ||= "" # "PHP #{calculator.discount_price}"
+    @discount_total ||= "PHP #{calculator.discount_price}"
   end
 
   def total_weight
@@ -19,7 +19,7 @@ class CartDecorator < SimpleDelegator
   end
 
   def shipping_price_value
-    @shipping_price ||= calculator.shipping_price
+    @shipping_price_value ||= calculator.shipping_price
   end
 
   def shipping_price

@@ -1,19 +1,19 @@
 class LineItemsCalculator
 
-  attr_reader :line_items
+  attr_reader :cart
 
   def initialize(cart)
-    @line_items = cart.line_items
+    @cart = cart
   end
 
-  def subtotal
-    line_items.inject(0) do |sum, line_item|
+  def total_price
+    @total_price ||= cart.line_items.inject(0) do |sum, line_item|
       sum += LineItemCalculator.new(line_item).subtotal
     end
   end
 
   def total_weight
-    line_items.inject(0) do |sum, line_item|
+    @total_weight ||= cart.line_items.inject(0) do |sum, line_item|
       sum += LineItemCalculator.new(line_item).total_weight
     end
   end

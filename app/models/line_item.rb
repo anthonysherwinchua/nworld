@@ -2,7 +2,7 @@ class LineItem < ActiveRecord::Base
 
   belongs_to :cart, inverse_of: :line_items
   belongs_to :product
-  has_one :line_item_discount
+  has_many :line_item_discounts
 
   validates :cart, presence: true
   validates :product, presence: true

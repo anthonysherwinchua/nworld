@@ -16,6 +16,7 @@ section.my-cart-table
               th.my-cart-th-title-5
                 | Subtotal
               th.my-cart-th-title-6
+                | Discount
           tbody
             = render partial: 'shopping_carts/line_item', collection: @cart.line_items
 
@@ -67,23 +68,23 @@ section.cart-totals
               h2
                 i.flaticon-shoppingcarts6
                 | Totals
-            .panel-body
-              h1
-                span Cart Subtotal:
-                p = decorated_cart.subtotal
             ul.list-group
+              li.list-group-item
+                h4
+                  span Cart Subtotal:
+                  p = decorated_cart.subtotal
+                li.list-group-item
+                  h4
+                    span Discount:
+                    p = decorated_cart.discount_total
               li.list-group-item
                 h4
                   span Shipping:
                   p = decorated_cart.shipping_price
-              li.list-group-item
-                h4
-                  span Discount:
-                  p = decorated_cart.discount_total
-              li.list-group-item
-                h4
-                  span Order Total:
-                  p = decorated_cart.total_price
+            .panel-body
+              h1
+                span Order Total:
+                p = decorated_cart.total_price
             .panel-footer
               form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"
                 input type="hidden" name="bn"                 value="PP-BuyNowBF:btn_buynow_SM.gif:NonHostedGuest"

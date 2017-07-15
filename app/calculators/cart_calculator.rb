@@ -6,16 +6,20 @@ class CartCalculator
     @cart = cart
   end
 
-  def subtotal
-    @subtotal ||= LineItemsCalculator.new(cart).subtotal
+  def line_items_price
+    @line_items_price ||= LineItemsCalculator.new(cart).total_price
   end
 
   def shipping_price
-    @shipping_price ||= ShippingCalculator.new(cart).shipping_price
+    @shipping_price ||= ShippingCalculator.new(cart).total_price
+  end
+
+  def discount_price
+    @discount_price ||= DiscountCalculator.new(cart).total_price
   end
 
   def total_price
-    @total_price ||= subtotal + shipping_price
+    @total_price ||= line_items_price + shipping_price
   end
 
   def total_price_in_cent
