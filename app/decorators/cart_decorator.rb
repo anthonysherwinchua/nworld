@@ -11,7 +11,7 @@ class CartDecorator < SimpleDelegator
   end
 
   def discount_total
-    @discount_total ||= "PHP #{calculator.discount_price}"
+    @discount_total ||= "" # "PHP #{calculator.discount_price}"
   end
 
   def total_weight
