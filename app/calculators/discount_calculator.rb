@@ -55,10 +55,10 @@ class DiscountCalculator
         end
       end
     end
-    if tags.flatten.uniq.count >= 5
-      clear_discounts
-      create_retailer_discounts
-    end
+    # if tags.flatten.uniq.reject(&:blank?).count >= 5
+    #   clear_discounts
+    #   create_retailer_discounts
+    # end
   end
 
   def create_discount(running_total, line_item, source)
