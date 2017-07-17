@@ -62,11 +62,8 @@ class DiscountCalculator
   end
 
   def create_discount(running_total, line_item, source)
-    source = 'retailer' if (running_total - line_item.unit_price) < 500 || (source == 'wholesaler' && running_total < 16_500)
+    source = 'retailer' if (running_total - line_item.unit_price) < 500
     discount_percent = source == 'retailer' ? 0.1 : 0.25
-    # discount = eligible_price_for_discount(running_total, line_item.unit_price) * discount_percent
-    # line_item.line_item_discounts.create!(source: source, amount: discount)
-
     unit_price = line_item.unit_price
 
     if (running_total - unit_price) < 500
