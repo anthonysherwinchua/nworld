@@ -19,7 +19,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
-    @current_item = CreateCodeForm.new(create_user_params[:code], create_user_params[:role])
+    @current_item = CreateCodeForm.new(create_user_params[:name], create_user_params[:code], create_user_params[:role])
     if @current_item.save
       redirect_to admin_users_path, notice: 'Successfully created code'
     else
@@ -40,7 +40,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create_user_params
-    params.require(:create_code_form).permit(:code, :role)
+    params.require(:create_code_form).permit(:name, :code, :role)
   end
 
 end

@@ -1,15 +1,17 @@
 class CreateCodeForm < BaseForm
 
-  attr_accessor :code, :role
+  attr_accessor :name, :code, :role
 
   ROLES = ['retailer', 'wholesaler'].freeze
 
+  validates :name, presence: true
   validates :code, presence: true
   validates :role, inclusion: { in: ROLES }
 
   validate :code_uniqueness
 
-  def initialize(code = SecureRandom.hex(4).upcase, role = ROLES[0])
+  def initialize(name, code = SecureRandom.hex(4).upcase, role = ROLES[0])
+    @name = name
     @code = code
     @role = role
   end
@@ -29,6 +31,7 @@ class CreateCodeForm < BaseForm
     {
       email: "user+#{User.count + 1}@nworld.com",
       password: 'password123',
+      name: name,
       code: code
     }
   end

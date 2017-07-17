@@ -14,6 +14,7 @@
       table.table.table-hover.table-striped.table-condensed
         thead
           tr
+            th Name
             th Code
             th Retailer / Wholesaler
             th width="30%"
@@ -21,6 +22,7 @@
         tbody
           - @current_items.each do |current_item|
             tr
+              td = current_item.name
               td = current_item.code
               td= current_item.roles.first&.name&.titleize
               td
