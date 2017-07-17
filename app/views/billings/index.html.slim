@@ -17,8 +17,12 @@ section.checkout
             = form_for @form, as: :form, url: billing_path(cart), html: { method: :put, class: 'form-horizontal form-ui' } do |f|
               .form-group
                 .col-xs-12.col-sm-6
-                  = f.label :code, 'Retailer / Wholesaler Code'
+                  = f.label :code, 'Wholesaler Code (optional)'
                   = f.text_field :code, class: 'form-control'
+                p.help-block
+                  | Note: if you want to be a Distributor / Wholesaler, email us at
+                  br
+                  = link_to 'ajsharlien@nworldproductsonline.com', 'mailto:ajsharlien@nworldproductsonline.com'
               = f.fields_for :cart do |ff|
                 .form-group
                   .col-xs-12.col-sm-6
