@@ -12,4 +12,9 @@
         = line_item.quantity
       td.text-center data-th="Subtotal"
         = decorated_line_item.subtotal
+      td.text-center data-th="Discount"
+        ul
+          - decorated_line_item.line_item_discounts.each do |discount|
+            - decorate(discount) do |decorated_discount|
+              li = decorated_discount.unit_discount
 

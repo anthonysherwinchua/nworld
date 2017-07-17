@@ -30,6 +30,8 @@ section.my-cart-table
                 | Quantity
               th.my-cart-th-title-5
                 | Subtotal
+              th.my-cart-th-title-5
+                | Discount
           tbody
             = render partial: 'line_item', collection: @current_item.line_items
 
@@ -40,6 +42,11 @@ section.cart-totals
         .theme-form-container
           .theme-form
             h3 Billing Details
+            .row
+              .col-xs-12.col-sm-6
+                dl
+                  dt = @cart.user&.code
+                  dd Retailer / Wholesaler code
             .row
               .col-xs-12.col-sm-6
                 dl
@@ -71,24 +78,28 @@ section.cart-totals
 
       .animated-2.fadeIn-animation.col-xs-12.col-sm-6.in-view
         .panel.panel-default.float-right
-          - decorate(@current_item) do |decorated_cart|
+          - decorate(@cart) do |decorated_cart|
             .panel-heading
               h2
                 i.flaticon-shoppingcarts6
                 | Totals
-            .panel-body
-              h1
-                span Cart Subtotal:
-                p = decorated_cart.subtotal
             ul.list-group
+              li.list-group-item
+                h4
+                  span Cart Subtotal:
+                  p = decorated_cart.subtotal
+                li.list-group-item
+                  h4
+                    span Discount:
+                    p = decorated_cart.discount_total
               li.list-group-item
                 h4
                   span Shipping:
                   p = decorated_cart.shipping_price
-              li.list-group-item
-                h4
-                  span Order Total:
-                  p = decorated_cart.total_price
+            .panel-body
+              h1
+                span Order Total:
+                p = decorated_cart.total_price
             .panel-footer
               = simple_form_for([:admin, @current_item]) do |f|
                 = f.input :status, collection: Cart.statuses.keys

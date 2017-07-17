@@ -8,6 +8,8 @@ class Admin::CartsController < Admin::BaseController
   end
 
   def show
+    @cart = @current_item
+    DiscountCalculator.new(@current_item).recalculate!
   end
 
   def edit
