@@ -63,20 +63,23 @@ class DiscountCalculator
 
   def create_discount(running_total, line_item, source)
     unit_price = line_item.unit_price
-    source = 'retailer' if (running_total - unit_price) < 500
-    discount_percent = source == 'retailer' ? 0.1 : 0.25
+    _source = (running_total - unit_price) < 16_500 ? 'retailer' : source
+    discount_percent = _source == 'retailer' ? 0.1 : 0.25
 
     if (running_total - unit_price) < 500
       discount = (unit_price - (500 - (running_total - unit_price))) * discount_percent
-      line_item.line_item_discounts.create!(source: source, amount: discount)
+      line_item.line_item_discounts.create!(source: 'retailer <just above 500>', amount: discount)
     elsif source == 'wholesaler' && ((running_total - unit_price) < 16_500 && running_total > 16_500)
       wholesaler_discount = running_total - 16_500
-      line_item.line_item_discounts.create!(source: 'wholesaler', amount: wholesaler_discount * 0.25)
+      line_item.line_item_discounts.create!(source: 'wholesaler <just above 16,500>', amount: wholesaler_discount * 0.25)
       discount = unit_price - wholesaler_discount
-      line_item.line_item_discounts.create!(source: 'retailer', amount: discount * 0.1)
+      line_item.line_item_discounts.create!(source: 'retailer <just below 16,500', amount: discount * 0.1)
     else
       discount = unit_price * discount_percent
-      line_item.line_item_discounts.create!(source: source, amount: discount)
+      if source == 'wholesaler' && running_total < 16_500
+        _source = 'wholesaler with retailer discount <just below 16,500>'
+      end
+      line_item.line_item_discounts.create!(source: _source, amount: discount)
     end
   end
 
