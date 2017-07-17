@@ -73,14 +73,18 @@ section.cart-totals
                 h4
                   span Cart Subtotal:
                   p = decorated_cart.subtotal
-                li.list-group-item
-                  h4
-                    span Discount:
-                    p = decorated_cart.discount_total
+              li.list-group-item
+                h4
+                  span Discount:
+                  p = decorated_cart.discount_total
               li.list-group-item
                 h4
                   span Shipping:
                   p = decorated_cart.shipping_price
+              li.list-group-item
+                h4
+                  span Process Fee:
+                  p = decorated_cart.processing_fee
             .panel-body
               h1
                 span Order Total:

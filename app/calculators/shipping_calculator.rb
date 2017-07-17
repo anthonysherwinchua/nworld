@@ -15,7 +15,7 @@ class ShippingCalculator
   end
 
   def total_weight
-    @total_weight ||= LineItemsCalculator.new(cart).total_weight
+    @total_weight ||= LineItemsCalculator.new(cart).total_weight + 5
   end
 
   private
