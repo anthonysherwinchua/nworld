@@ -19,7 +19,7 @@ class CartCalculator
   end
 
   def total_price
-    @total_price ||= line_items_price + shipping_price
+    @total_price ||= line_items_price + shipping_price - discount_price
   end
 
   def total_price_in_cent

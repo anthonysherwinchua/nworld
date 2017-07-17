@@ -7,7 +7,7 @@ class DiscountCalculator
   end
 
   def total_price
-    @total_price ||= cart.line_items.inject(0) do |sum, line_item|
+    cart.line_items.inject(0) do |sum, line_item|
       sum += line_item.line_item_discounts.sum(:amount)
     end
   end
@@ -64,15 +64,32 @@ class DiscountCalculator
   def create_discount(running_total, line_item, source)
     source = 'retailer' if (running_total - line_item.unit_price) < 500 || (source == 'wholesaler' && running_total < 16_500)
     discount_percent = source == 'retailer' ? 0.1 : 0.25
-    discount = eligible_price_for_discount(running_total, line_item.unit_price) * discount_percent
-    line_item.line_item_discounts.create!(source: source, amount: discount)
+    # discount = eligible_price_for_discount(running_total, line_item.unit_price) * discount_percent
+    # line_item.line_item_discounts.create!(source: source, amount: discount)
+
+    unit_price = line_item.unit_price
+
+    if (running_total - unit_price) < 500
+      discount = (unit_price - (500 - (running_total - unit_price))) * discount_percent
+      line_item.line_item_discounts.create!(source: source, amount: discount)
+    elsif source == 'wholesaler' && (running_total - unit_price) < 16_500 && running_total > 16_500
+      wholesaler_discount = running_total - 16_500
+      line_item.line_item_discounts.create!(source: 'wholesaler', amount: wholesaler_discount * 0.25)
+      discount = unit_price - wholesaler_discount
+      line_item.line_item_discounts.create!(source: 'retailer', amount: discount * 0.1)
+    else
+      discount = unit_price * discount_percent
+      line_item.line_item_discounts.create!(source: source, amount: discount)
+    end
   end
 
   def eligible_price_for_discount(running_total, unit_price)
-    if (running_total - unit_price) > 500
-      unit_price
-    else
+    if (running_total - unit_price) < 500
       (unit_price - (500 - (running_total - unit_price)))
+    elsif (running_total - unit_price) < 16_500 && running_total > 16_500
+      ()
+    else
+      unit_price
     end
   end
 
